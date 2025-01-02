@@ -28,13 +28,11 @@ const Navbar = () => {
                     {
                         user && (
                             <>
-                            {
-                                    navItems.map((item, index) => {
-                                        return (
-                                            <a href={item.href} key={index} className="p-4">{item.name}</a>
-                                        )
-                                    })
-                                }
+                                <a href="/dashboard" className="p-4">Dashboard</a>
+                                <a href="/cadastros" className="p-4">Cadastros</a>
+                                <a href="/financeiro" className="p-4">Financeiro</a>
+                                <a href="/boletos" className="p-4">Boletos</a>
+                                <a href="/relatorios" className="p-4">Relatorios</a>
                             </>
                         )
                     }

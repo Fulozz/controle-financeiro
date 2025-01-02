@@ -1,0 +1,34 @@
+"use client"
+import React from 'react';
+
+const DropdownMenu = ({ user }) => {
+  const signout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  };
+
+  const dropdownItems = [
+    { href: "/perfil", name: "Perfil" },
+    { href: "/configuracao", name: "Configurações" },
+    { href: "/login", name: "Sair", onClick: signout },
+  ];
+
+  return (
+    <div className="dropdown">
+      {user && user.name ? (
+        <>
+          <button className="dropbtn">{user.name}</button>
+          <div className="dropdown-content">
+            <a href="/perfil">Perfil</a>
+            <a href="/configuracao">Configurações</a>
+            <a href="/login" onClick={signout}>Sair</a>
+          </div>
+        </>
+      ) : (
+        <a href="/login" className="text-blue-500">Login</a>
+      )}
+    </div>
+  );
+};
+
+export default DropdownMenu;

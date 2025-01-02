@@ -7,11 +7,6 @@ const DropdownMenu = ({ user }) => {
     window.location.href = '/login';
   };
 
-  const dropdownItems = [
-    { href: "/perfil", name: "Perfil" },
-    { href: "/configuracao", name: "Configurações" },
-    { href: "/login", name: "Sair", onClick: signout },
-  ];
 
   return (
     <div className="dropdown">

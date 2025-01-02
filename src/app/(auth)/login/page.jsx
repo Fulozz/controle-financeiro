@@ -26,7 +26,7 @@ const LoginPage = () => {
   return (
     <div className="login-container flex items-center justify-center h-screen bg-gray-100 dark:bg-black ">
       <form onSubmit={handleSubmit(onSubmit)} className="login-form flex flex-col w-full max-w-md bg-white rounded-md shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
+        <h2 className="text-2xl font-bold text-center mb-4">Controle Financeiro</h2>
         <div className="form-group mb-4">
           <label htmlFor="email" className="text-gray-700 font-medium block mb-2">Email Address</label>
           <input
@@ -55,6 +55,7 @@ const LoginPage = () => {
           {isLoading ? 'Logging In...' : 'Login'}
         </button>
       </form>
+      <hr />
     </div>
   );
 };

@@ -19,27 +19,33 @@ const Navbar = () => {
     ]
 
   return (
-    <nav className="flex justify-between items-center py-[50px] px-[50px] md:px[150px] h-16 relative shadow-sm font-mono" role="navigation">
-        <div className="flex">
-            <Image src={logo} alt="logo" width={50} height={50} />
-            {
-                user && (
-                    <>
+    <>
+        {
+            user && (
+                <nav className="flex justify-between items-center py-[50px] px-[50px] md:px[150px] h-16 relative shadow-sm font-mono" role="navigation">
+                <div className="flex">
+                    <Image src={logo} alt="logo" width={50} height={50} />
                     {
-                            navItems.map((item, index) => {
-                                return (
-                                    <a href={item.href} key={index} className="p-4">{item.name}</a>
-                                )
-                            })
-                        }
-                    </>
-                )
-            }
-        </div>
-        <div>
-            <DropdownMenu user={user}/>
-        </div>
-    </nav>
+                        user && (
+                            <>
+                            {
+                                    navItems.map((item, index) => {
+                                        return (
+                                            <a href={item.href} key={index} className="p-4">{item.name}</a>
+                                        )
+                                    })
+                                }
+                            </>
+                        )
+                    }
+                </div>
+                <div>
+                    <DropdownMenu user={user}/>
+                </div>
+            </nav>
+            )
+        }
+    </>
   )
 }
 

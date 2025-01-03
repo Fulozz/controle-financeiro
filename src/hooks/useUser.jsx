@@ -5,7 +5,7 @@ import { isAuthenticated } from '@/utils/Auth'
 
 const useUser = () => {
     const [user, setUser] = useState(null)
-    
+
     const router = useRouter()
 
     useEffect(()=> {

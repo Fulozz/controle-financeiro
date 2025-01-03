@@ -7,6 +7,8 @@ import { isAuthenticated } from '@/utils/Auth'
 export default function isAuth(Component) {
     return function IsAuth(props){
         const auth = isAuthenticated;
+        
+
         useEffect(()=> {
             if(!auth){
                 redirect('/login')

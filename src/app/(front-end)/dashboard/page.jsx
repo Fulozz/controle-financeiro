@@ -3,14 +3,14 @@
 
 import React from 'react';
 import { isAuthenticad } from '@/hooks/isAuth';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { redirect } from 'next/navigation';
 
 const page = () => {
-   useLayoutEffect(()=> {
+  useEffect(()=> {
     const isAuth = isAuthenticad
     if(!isAuth){
-      redirect("/")
+      redirect("/login")
     }
    })
 

@@ -3,10 +3,16 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios'; // Import axios for making requests
 import toast from 'react-hot-toast';
+import useUser from '@/hooks/useUser';
+import { redirect } from "next/navigation";
 
 const LoginPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [isLoading, setIsLoading] = useState(false); // Track loading state
+  const user = useUser();
+  if(user){
+    redirect('/dashboard')
+  }
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -54,7 +60,10 @@ const LoginPage = () => {
         <button type="submit" disabled={isLoading} className="login-button w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
           {isLoading ? 'Logging In...' : 'Login'}
         </button>
+        <h4 className="justify-center text-center w-full py-2 font-medium text-lg">ou</h4>
+        <a href="/signup" className="login-button text-center w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed"  >Cadastre-se</a>
       </form>
+      
       <hr />
     </div>
   );

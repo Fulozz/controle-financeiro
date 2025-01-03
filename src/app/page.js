@@ -5,17 +5,13 @@ import React from 'react'
 
 export default function Home() {
 
-  const user = useUser();
-  console.log(user,"dashboard")
-  if (!user) {
-      return null;
-  }
-
+  
   return (
     <div>
       <div className="">
-      <h1>Olá, {user.name}!</h1>
-      <p>Seu e-mail é: {user.email}</p>
+      <h1>Olá,!</h1>
+      <p>Seja bem-vindo(a)</p>
+      <a href="/login">Login</a>
       {/* Exibir outras informações do usuário */}
     </div>
     </div>

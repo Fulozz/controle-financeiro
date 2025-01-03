@@ -2,8 +2,10 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
+export const isAuthenticated = false
 const useUser = () => {
     const [user, setUser] = useState(null)
+    
     const router = useRouter()
 
     useEffect(()=> {

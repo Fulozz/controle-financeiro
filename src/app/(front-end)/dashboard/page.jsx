@@ -1,20 +1,23 @@
 "use client"
-import Navbar from '@/components/navbar/Navbar';
-import useUser from '@/hooks/useUser'
-import React from 'react'
 
+
+import React from 'react';
+import { isAuthenticad } from '@/hooks/isAuth';
+import { useLayoutEffect } from 'react';
+import { redirect } from 'next/navigation';
 
 const page = () => {
-    const user = useUser();
-    console.log(user,"dashboard")
-    if (!user) {
-        return null;
+   useLayoutEffect(()=> {
+    const isAuth = isAuthenticad
+    if(!isAuth){
+      redirect("/")
     }
+   })
 
 return (
     <div className="">
-      <h1>Olá, {user.name}!</h1>
-      <p>Seu e-mail é: {user.email}</p>
+      <h1>Olá, bem-vindo ao dashboard!</h1>
+      <p>Você pode visualizar e atualizar suas informações no seu perfil</p>
       {/* Exibir outras informações do usuário */}
     </div>
   );

@@ -1,8 +1,8 @@
 "use client"
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { isAuthenticated } from '@/utils/Auth'
 
-export const isAuthenticated = false
 const useUser = () => {
     const [user, setUser] = useState(null)
     

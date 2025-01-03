@@ -7,13 +7,8 @@ export default function Home() {
 
   
   return (
-    <div>
-      <div className="">
-      <h1>Olá,!</h1>
-      <p>Seja bem-vindo(a)</p>
-      <a href="/login">Login</a>
-      {/* Exibir outras informações do usuário */}
-    </div>
-    </div>
+    <main className="text-center h-screen flex justify-center items-center">
+      <p>Home page</p>
+    </main>
   );
 }

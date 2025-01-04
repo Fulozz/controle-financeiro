@@ -1,21 +1,21 @@
 "use client"
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { isAuthenticated } from '@/utils/Auth'
+
 
 const useUser = () => {
+    
     const [user, setUser] = useState(null)
-
     const router = useRouter()
 
     useEffect(()=> {
         const fetchUser = async () => {
             const token = localStorage.getItem('token');
             if(!token){
-                return router.push('/login')
+                return (router.push('/login'))
             }
             if(token){
-                const response = await fetch('https://portfolio-backend-zpig.onrender.com/api/v1/userProfile', {
+                const response = await fetch(`${process.env.API_URL}/api/v1/profile`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/navbar/Navbar";
+import { AuthProvider } from "@/hooks/useAuth";
 
 
 const geistSans = Geist({
@@ -26,10 +27,11 @@ export default function RootLayout({ children }) {
         cz-shortcut-listen="true"
         className={`${geistSans.variable} ${geistMono.variable} antialiased px-[10vw] bg-white text-black dark:text-white dark:bg-black`}
       >
-        <Toaster position="top-center" reverseOrder={false} toastOptions={{duration: 2000}} />
-        <Navbar />
-        {children}
-
+        <AuthProvider>
+          <Toaster position="top-center" reverseOrder={false} toastOptions={{duration: 2000}} />
+          <Navbar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

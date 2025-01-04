@@ -3,11 +3,10 @@ import useUser from '@/hooks/useUser';
 import React from 'react'
 
 const page = () => {
-    const user = useUser();
-    console.log(user)
-    if (!user) {
-        return null;
-    }
+  const user = {
+    name:  "Thiago",
+    email: "teste.email@gmail.com"
+  }
   return (
     <div className="">
         <h1>Perfil</h1>

@@ -3,20 +3,13 @@ import Image from 'next/image'
 import React from 'react'
 import logo  from '@/components/assets/logo.png'
 import DropdownMenu from '@/common/DropdownMenu'
-import useUser from '@/hooks/useUser'
+import {useAuth} from '@/hooks/useAuth'
 
 
 const Navbar = () => {
 
-    const user = useUser();
-
-    const navItems = [
-        { href: "/dashboard", name: "Dashboard"},
-        { href: "/cadastros", name: "Cadastros"},
-        { href: "/financeiro", name: "Financeiro"},
-        { href: "/boletos", name: "Boletos"},
-        { href: "/relatorios", name: "Relatorios"},
-    ]
+    const { isAuthenticated, isLoading } = useAuth()
+    const user = null
 
   return (
     <>

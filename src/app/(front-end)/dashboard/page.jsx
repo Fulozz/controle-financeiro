@@ -2,17 +2,11 @@
 
 
 import React from 'react';
-import { isAuthenticad } from '@/hooks/isAuth';
 import { useEffect } from 'react';
 import { redirect } from 'next/navigation';
 
 const page = () => {
-  useEffect(()=> {
-    const isAuth = isAuthenticad
-    if(!isAuth){
-      redirect("/login")
-    }
-   })
+
 
 return (
     <div className="">

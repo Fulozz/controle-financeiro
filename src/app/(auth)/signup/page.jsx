@@ -46,11 +46,11 @@ const page = () => {
         </div>
         <div className="form-group mb-4">
           <label htmlFor="password" className="text-gray-700 font-medium block mb-2">Senha</label>
-          <input {...register("password", { required: true })} type="password" id="password" name="password" className="form-control w-full py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" />
+          <input {...register("password", { required: true, minLength: 8  })} type="password" id="password" name="password" className="form-control w-full py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" />
         </div>
         <div className="form-group mb-4">
           <label htmlFor="confirmPassword" className="text-gray-700 font-medium block mb-2">Confirmar Senha</label>
-          <input {...register("confirmPassword", { required: true })} type="password" id="confirmPassword" name="confirmPassword" className="form-control w-full py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" />
+          <input {...register("confirmPassword", { required: true, minLength: 8  })} type="password" id="confirmPassword" name="confirmPassword" className="form-control w-full py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" />
         </div>
         <button type="submit" disabled={isLoading} className="login-button w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
           {isLoading ? 'Criando Conta...' : 'Criar Conta'}

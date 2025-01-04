@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation'
 
 const useUser = () => {
     
-    const [user, setUser] = useState(null)
-    const router = useRouter()
+    const [user, setUser] = useState({name: '', email: ''})
+
 
     useEffect(()=> {
         const fetchUser = async () => {

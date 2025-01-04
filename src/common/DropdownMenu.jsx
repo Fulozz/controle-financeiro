@@ -15,6 +15,13 @@ const DropdownMenu = ({ user }) => {
           <button className="dropbtn">{user.name}</button>
           <div className="dropdown-content">
             <a href="/perfil">Perfil</a>
+            <div className="block md:hidden">
+              <a href="/dashboard" className="p-4">Dashboard</a>
+              <a href="/cadastros" className="p-4">Cadastros</a>
+              <a href="/financeiro" className="p-4">Financeiro</a>
+              <a href="/boletos" className="p-4">Boletos</a>
+              <a href="/relatorios" className="p-4">Relatorios</a>
+            </div>
             <a href="/configuracao">Configurações</a>
             <a href="/login" onClick={signout}>Sair</a>
           </div>

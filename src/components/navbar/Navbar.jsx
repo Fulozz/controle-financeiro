@@ -21,13 +21,13 @@ const Navbar = () => {
                     <Image src={logo} alt="logo" width={50} height={50} />
                     {
                         user && (
-                            <>
+                            <div className='hidden md:flex'>
                                 <a href="/dashboard" className="p-4">Dashboard</a>
                                 <a href="/cadastros" className="p-4">Cadastros</a>
                                 <a href="/financeiro" className="p-4">Financeiro</a>
                                 <a href="/boletos" className="p-4">Boletos</a>
                                 <a href="/relatorios" className="p-4">Relatorios</a>
-                            </>
+                            </div>
                         )
                     }
                 </div>

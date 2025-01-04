@@ -2,7 +2,10 @@
 import React from 'react';
 
 const DropdownMenu = ({ user }) => {
- 
+  const signout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  };
 
 
   return (
@@ -13,7 +16,7 @@ const DropdownMenu = ({ user }) => {
           <div className="dropdown-content">
             <a href="/perfil">Perfil</a>
             <a href="/configuracao">Configurações</a>
-            <a href="/login" onClick={null}>Sair</a>
+            <a href="/login" onClick={signout}>Sair</a>
           </div>
         </>
       ) : (

@@ -12,7 +12,7 @@ const useUser = () => {
         const fetchUser = async () => {
             const token = localStorage.getItem('token');
             if(!token){
-                return (router.push('/login'))
+                return null;
             }
             if(token){
                 const response = await fetch(`https://portfolio-backend-zpig.onrender.com/api/v1/profile`, {

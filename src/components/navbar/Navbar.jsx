@@ -4,12 +4,13 @@ import React from 'react'
 import logo  from '@/components/assets/logo.png'
 import DropdownMenu from '@/common/DropdownMenu'
 import {useAuth} from '@/hooks/useAuth'
+import useUser from '@/hooks/useUser'
 
 
 const Navbar = () => {
 
     const { isAuthenticated, isLoading } = useAuth()
-    const user = null
+    const user = useUser()
 
   return (
     <>

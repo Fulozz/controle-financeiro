@@ -14,7 +14,7 @@ const page = () => {
   const onSubmit = async (data) => {
     setIsLoading(true);
     try {
-      const response = await axios.post(`${process.env.API_URL}/api/v1/login`, data);
+      const response = await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/login`, data);
       localStorage.setItem('token', response.data.token);
       toast.success('Login successful!');
       window.location.href = '/dashboard'; // Redirect to main page

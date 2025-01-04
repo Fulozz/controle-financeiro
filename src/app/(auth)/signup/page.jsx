@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios'; // Import axios for making requests
 import toast from 'react-hot-toast';
+import {redirect} from 'next/navigation';
 
 const page = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -17,7 +18,7 @@ const page = () => {
         return; // Impede o envio do formulário se as senhas não coincidirem
       }
 
-      const response = await axios.post(`${process.env.API_URL}/api/v1/register`, data);
+      const response = await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/register`, data);
       console.log('Signup successful:', response.data);
       toast.success('Conta criada com sucesso!');
       // Redirecionar para a página de login ou outra página relevante após o cadastro bem-sucedido
@@ -54,6 +55,8 @@ const page = () => {
         <button type="submit" disabled={isLoading} className="login-button w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
           {isLoading ? 'Criando Conta...' : 'Criar Conta'}
         </button>
+        <h4 className="justify-center text-center w-full py-2 font-medium text-lg">ou</h4>
+        <a href="/login" className="login-button text-center w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed"  >Login</a>
       </form>
     </div>
   );

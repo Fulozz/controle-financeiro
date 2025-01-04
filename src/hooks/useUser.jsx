@@ -15,7 +15,7 @@ const useUser = () => {
                 return (router.push('/login'))
             }
             if(token){
-                const response = await fetch(`${process.env.API_URL}/api/v1/profile`, {
+                const response = await fetch(`https://portfolio-backend-zpig.onrender.com/api/v1/profile`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

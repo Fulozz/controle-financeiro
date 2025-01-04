@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -13,7 +12,7 @@ const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      fetch(`${process.env.API_URL}/api/v1/validate-token`, {
+      fetch(`https://portfolio-backend-zpig.onrender.com/api/v1/validate-token`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -23,7 +23,7 @@ const page = () => {
       console.log('Signup successful:', response.data);
       toast.success('Conta criada com sucesso!');
       // Redirecionar para a página de login ou outra página relevante após o cadastro bem-sucedido
-      router.push('/login');
+      route.push('/login');
     } catch (error) {
       console.error('Erro ao criar a conta:', error);
       toast.error('Falha ao criar a conta. Verifique seus dados.');

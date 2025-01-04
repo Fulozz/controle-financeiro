@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios'; // Import axios for making requests
 import toast from 'react-hot-toast';
-import {redirect} from 'next/navigation';
+import {useRouter} from 'next/navigation';
 
 const page = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [isLoading, setIsLoading] = useState(false);
+  const route = useRouter();
   const onSubmit = async (data) => {
     setIsLoading(true);
     try {
@@ -22,7 +23,7 @@ const page = () => {
       console.log('Signup successful:', response.data);
       toast.success('Conta criada com sucesso!');
       // Redirecionar para a página de login ou outra página relevante após o cadastro bem-sucedido
-      redirect('/login');
+      router.push('/login');
     } catch (error) {
       console.error('Erro ao criar a conta:', error);
       toast.error('Falha ao criar a conta. Verifique seus dados.');
@@ -47,10 +48,12 @@ const page = () => {
         <div className="form-group mb-4">
           <label htmlFor="password" className="text-gray-700 font-medium block mb-2">Senha</label>
           <input {...register("password", { required: true, minLength: 8  })} type="password" id="password" name="password" className="form-control w-full py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" />
+          {errors.password?.type === 'minLength' && <span className="text-red-500 text-sm">Password must be at least 8 characters long.</span>}
         </div>
         <div className="form-group mb-4">
           <label htmlFor="confirmPassword" className="text-gray-700 font-medium block mb-2">Confirmar Senha</label>
           <input {...register("confirmPassword", { required: true, minLength: 8  })} type="password" id="confirmPassword" name="confirmPassword" className="form-control w-full py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" />
+          {errors.password?.type === 'minLength' && <span className="text-red-500 text-sm">Password must be at least 8 characters long.</span>}
         </div>
         <button type="submit" disabled={isLoading} className="login-button w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
           {isLoading ? 'Criando Conta...' : 'Criar Conta'}

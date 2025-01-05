@@ -5,6 +5,8 @@ import { useProtectedRoute } from '@/hooks/useAuth';
 import useUser from '@/hooks/useUser'
 import DashboardCard from '@/components/dashboard/DashboardCard';
 import moment from 'moment';
+import { Plus } from 'lucide-react';
+import BottomMenu from '@/components/cadastro/BottomMenu';
 const page = () => {
   moment.locale('pt-br', {
     months: [
@@ -39,6 +41,9 @@ return (
 
 
      {/* TODO: GASTOS RECENTES E OVERVIEW DOS MESES https://ui.shadcn.com/examples/dashboard */}
+     <div className="flex md:hidden justify-center items-center z-40 absolute right-6 bottom-6 h-[50px] w-[50px] rounded-lg  border border-gray-400 shadow-lg">
+      <BottomMenu user={user}/>
+     </div>
     </div>
   );
 }

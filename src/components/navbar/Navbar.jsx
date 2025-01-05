@@ -2,10 +2,11 @@
 import Image from 'next/image'
 import React from 'react'
 import logo  from '@/components/assets/logo.png'
-import DropdownMenu from '@/components/navbar/DropdownMenu'
+
 import {useAuth} from '@/hooks/useAuth'
 import useUser from '@/hooks/useUser'
-
+import DropdownMenuCadastro from '@/components/navbar/DropdownMenuCadastro'
+import DropdownMenu from '@/components/navbar/DropdownMenu'
 
 const Navbar = () => {
 
@@ -23,7 +24,7 @@ const Navbar = () => {
                         user && (
                             <div className='hidden md:flex'>
                                 <a href="/dashboard" className="p-4">Dashboard</a>
-                                <a href="/cadastro" className="p-4">Cadastros</a>
+                                <DropdownMenuCadastro user={user}/>
                                 <a href="/financeiro" className="p-4">Financeiro</a>
                                 <a href="/boletos" className="p-4">Boletos</a>
                                 <a href="/relatorios" className="p-4">Relatorios</a>
@@ -34,6 +35,7 @@ const Navbar = () => {
                 <div>
                     <DropdownMenu user={user}/>
                 </div>
+                
             </nav>
             )
         }

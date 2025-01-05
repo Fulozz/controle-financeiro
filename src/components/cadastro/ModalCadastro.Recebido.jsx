@@ -3,7 +3,7 @@ import { useProtectedRoute } from "@/hooks/useAuth";
 import { useForm } from "react-hook-form";
 import useUser from "@/hooks/useUser";
 
-const ModalCadastro = ({ isOpen, setIsOpen }) => {
+const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
   const { isLoading, isAuthenticated } = useProtectedRoute();
   const user = useUser();
   const {
@@ -112,4 +112,4 @@ const ModalCadastro = ({ isOpen, setIsOpen }) => {
   );
 };
 
-export default ModalCadastro;
+export default ModalCadastroRecebido;

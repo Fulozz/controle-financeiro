@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 
 const useUser = () => {
     
-    const [user, setUser] = useState({name: '', email: ''})
+    const [user, setUser] = useState({name: '', email: '', id: ''})
 
 
     useEffect(()=> {
@@ -24,6 +24,7 @@ const useUser = () => {
 
             if(data){
                 setUser({
+                    id: data._id,
                     name: data.name,
                     email: data.email
                 })

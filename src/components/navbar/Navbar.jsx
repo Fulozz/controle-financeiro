@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import React from 'react'
 import logo  from '@/components/assets/logo.png'
-import DropdownMenu from '@/common/DropdownMenu'
+import DropdownMenu from '@/components/navbar/DropdownMenu'
 import {useAuth} from '@/hooks/useAuth'
 import useUser from '@/hooks/useUser'
 

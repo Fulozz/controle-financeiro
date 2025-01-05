@@ -19,7 +19,7 @@ const DropdownMenu = ({ user }) => {
             <a href="/perfil" className='p-4 block hover:bg-[#f1f1f1]'>Perfil</a>
             <div className="block  md:hidden">
               <a href="/dashboard" className='p-4 block hover:bg-[#f1f1f1]'>Dashboard</a>
-              <a href="/cadastros" className='p-4 block hover:bg-[#f1f1f1]'>Cadastros</a>
+              <a href="/cadastro" className='p-4 block hover:bg-[#f1f1f1]'>Cadastros</a>
               <a href="/financeiro" className='p-4 block hover:bg-[#f1f1f1]'>Financeiro</a>
               <a href="/boletos" className='p-4 block hover:bg-[#f1f1f1]'>Boletos</a>
               <a href="/relatorios" className="p-4 block">Relatorios</a>

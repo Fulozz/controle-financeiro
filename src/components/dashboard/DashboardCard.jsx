@@ -1,10 +1,11 @@
 import useFinancial from '@/hooks/useFinancial';
 import React from 'react';
+import moment from 'moment/moment';
 
-const DashboardCard = ({ user }) => {
+const DashboardCard = ({ user, mes }) => {
   const userID = user.id
   const mesRef = new Date().toISOString().slice(0, 7)
-  console.log(mesRef)
+  
  
   const { data, isLoading, error } = useFinancial(userID, mesRef);
 
@@ -39,11 +40,11 @@ const DashboardCard = ({ user }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div className="col-span-1 border-2 p-4 rounded-md bg-white shadow-md">
-        <p className='font-medium'>Total recebido - <span className='font-bold'>{data.dados.mesReferencia}</span> </p>
+        <p className='font-medium'>Total recebido - <span className='font-bold'>{mes}</span> </p>
         <h2 className='text-3xl text-blue-500 font-bold'>{totalRecebido ? (formatValue(totalRecebido)): ('R$00,00')}</h2>
       </div>
       <div className="col-span-1 border-2 p-4 rounded-md bg-white shadow-md">
-        <p className='font-medium'>Total pago - <span className='font-bold'>{data.dados.mesReferencia}</span> </p>
+        <p className='font-medium'>Total pago - <span className='font-bold'>{mes}</span> </p>
         <h2 className='text-3xl text-red-500 font-bold'>-{totalPago ? (formatValue(totalPago)): ('R$00,00')}</h2>
       </div>
       <div className="col-span-1 border-2 p-4 rounded-md bg-white shadow-md">

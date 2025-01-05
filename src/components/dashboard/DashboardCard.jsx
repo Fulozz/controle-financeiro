@@ -39,11 +39,11 @@ const DashboardCard = ({ user }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div className="col-span-1 border-2 p-4 rounded-md bg-white shadow-md">
-        <p className='font-medium'>Total recebido - <span className='font-bold'>{data.dados.mesRefencia}</span> </p>
+        <p className='font-medium'>Total recebido - <span className='font-bold'>{data.dados.mesReferencia}</span> </p>
         <h2 className='text-3xl text-blue-500 font-bold'>{totalRecebido ? (formatValue(totalRecebido)): ('R$00,00')}</h2>
       </div>
       <div className="col-span-1 border-2 p-4 rounded-md bg-white shadow-md">
-        <p className='font-medium'>Total pago - <span className='font-bold'>{mesRef}</span> </p>
+        <p className='font-medium'>Total pago - <span className='font-bold'>{data.dados.mesReferencia}</span> </p>
         <h2 className='text-3xl text-red-500 font-bold'>-{totalPago ? (formatValue(totalPago)): ('R$00,00')}</h2>
       </div>
       <div className="col-span-1 border-2 p-4 rounded-md bg-white shadow-md">

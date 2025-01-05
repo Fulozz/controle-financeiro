@@ -7,14 +7,6 @@ import DashboardCard from '@/components/dashboard/DashboardCard';
 
 const page = () => {
 
-  const data = [
-    {
-      mesRef: "dezembro",
-      recebido: 21500,
-      pago: 31758.84,
-      saldo: 10946.27
-    }
-  ]
     const { isLoading, isAuthenticated } = useProtectedRoute();
     const user = useUser();
 
@@ -31,7 +23,7 @@ console.log(user)
 return (
     <div className="pt-3">
       <h1 className='text-[1.8rem] font-semibold '>Visão Geral das Contas</h1>
-      <h4>Mês de referencia • {data[0].mesRef} </h4>
+      <h4>Mês de referencia • janeiro </h4>
 
       <div className="max-w-2xl md:max-w-none mx-auto pt-2">
         <DashboardCard user={user}   />

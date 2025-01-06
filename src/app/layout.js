@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         cz-shortcut-listen="true"
-        className={`${geistSans.variable} ${geistMono.variable} antialiased px-[10vw]  dark:text-white dark:bg-black`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased px-[10vw]  bg-white text-black dark:text-white dark:bg-black`}
       >
         <AuthProvider>
           <Toaster position="top-center" reverseOrder={false} toastOptions={{duration: 2000}} />

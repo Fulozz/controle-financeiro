@@ -13,11 +13,6 @@ const DropdownMenuCadastro = ({ user }) => {
           <div className="hidden  bg-white shadow-lg right-0 group-hover:block absolute rounded-lg min-w-[200px] z-10 border border-gray-400">
               <div onClick={()=> setIsOpenRecebido(true)}  className='p-4 block hover:bg-[#f1f1f1] cursor-pointer'>Recebido</div>
               <div onClick={()=> setIsOpenPago(true)}  className='p-4 block hover:bg-[#f1f1f1] cursor-pointer'>Pago</div>
-            <div className="block  md:hidden">
-              <div onClick={()=> setIsOpenRecebido(true)}  className='p-4 block hover:bg-[#f1f1f1] cursor-pointer'>Recebido</div>
-              <div onClick={()=> setIsOpenPago(true)}  className='p-4 block hover:bg-[#f1f1f1] cursor-pointer'>Pago</div>
-            </div>
-
           </div>
         </>
       ) }

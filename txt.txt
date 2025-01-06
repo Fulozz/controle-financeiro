@@ -1,0 +1,7 @@
+Opção de se foi débito ou crédito
+Caso for crédito, ter opção de selecionar data de vencimento da fatura para todos os valores do crédito ser na data de vencimento da fatura
+
+Quantidade de parcelas automatico - Poder registrar como pago, pendente ou cancelado
+Caso cancelado excluir logicamente do registro.
+
+Seletor da data de vencimento na area do perfil

@@ -38,20 +38,21 @@ const DashboardCard = ({ user, mes }) => {
 
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div className="col-span-1 border-2 p-4 rounded-md bg-white shadow-md">
-        <p className='font-medium'>Total recebido - <span className='font-bold'>{mes}</span> </p>
-        <h2 className='text-3xl text-blue-500 font-bold'>{totalRecebido ? (formatValue(totalRecebido)): ('R$00,00')}</h2>
+    <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+      <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+        <div className="aspect-video rounded-xl bg-white shadow-lg dark:bg-[#18181A] flex flex-col items-center justify-center">
+          <p className='text-base md:text-[1.4rem] '>Total recebido - <span className='font-bold'>{mes}</span> </p>
+          <h2 className='text-[2.2rem] text-blue-500 font-bold'>{totalRecebido ? (formatValue(totalRecebido)): ('R$00,00')}</h2>
+        </div>
+        <div className="aspect-video rounded-xl bg-white shadow-lg dark:bg-[#18181A] flex flex-col items-center justify-center">
+          <p className='text-base md:text-[1.4rem] '>Total recebido - <span className='font-bold'>{mes}</span> </p>
+          <h2 className='text-[2.2rem] text-red-500 font-bold'>-{totalPago ? (formatValue(totalPago)): ('R$00,00')}</h2>
+        </div>
+        <div className="aspect-video rounded-xl bg-white shadow-lg dark:bg-[#18181A] flex flex-col items-center justify-center">
+          <p className='text-base md:text-[1.4rem] '>Total recebido - <span className='font-bold'>{mes}</span> </p>
+          <h2 className='text-[2.2rem] text-blue-500 font-bold'>{saldo ? (formatValue(saldo)): ('R$00,00')}</h2>
+        </div>
       </div>
-      <div className="col-span-1 border-2 p-4 rounded-md bg-white shadow-md">
-        <p className='font-medium'>Total pago - <span className='font-bold'>{mes}</span> </p>
-        <h2 className='text-3xl text-red-500 font-bold'>-{totalPago ? (formatValue(totalPago)): ('R$00,00')}</h2>
-      </div>
-      <div className="col-span-1 border-2 p-4 rounded-md bg-white shadow-md">
-        <p className='font-medium'>Saldo atual </p>
-        <h2 className='text-3xl text-blue-500 font-bold'>{saldo ? (formatValue(saldo)) : ('R$00,00')}</h2>
-      </div>
-
     </div>
   )
 };

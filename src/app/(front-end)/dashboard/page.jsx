@@ -8,7 +8,7 @@ import moment from 'moment';
 import { Plus } from 'lucide-react';
 import BottomMenu from '@/components/cadastro/BottomMenu';
 const page = () => {
-  moment.locale('pt-br', {
+  moment.defineLocale('pt-br', {
     months: [
       'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
       'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
@@ -16,9 +16,9 @@ const page = () => {
   });
     const dataAtual = new Date();
     const mesPorExtenso = moment(dataAtual).format('MMMM');
-
-    const { isLoading, isAuthenticated } = useProtectedRoute();
     const user = useUser();
+    const { isLoading, isAuthenticated } = useProtectedRoute();
+
 
     if(isLoading | !user) {
       return (
@@ -41,7 +41,7 @@ return (
 
 
      {/* TODO: GASTOS RECENTES E OVERVIEW DOS MESES https://ui.shadcn.com/examples/dashboard */}
-     <div className="flex md:hidden justify-center items-center z-40 absolute right-6 bottom-6 h-[50px] w-[50px] rounded-lg  border border-gray-400 shadow-lg">
+     <div className="flex md:hidden dark:bg-[#18181A] justify-center items-center z-40 fixed right-6 bottom-6 h-[50px] w-[50px] rounded-lg  border border-gray-400 shadow-lg">
       <BottomMenu user={user}/>
      </div>
     </div>

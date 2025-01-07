@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useProtectedRoute } from "@/hooks/useAuth";
 import { useForm } from "react-hook-form";
 import useUser from "@/hooks/useUser";
@@ -20,17 +20,15 @@ const ModalCadastroPago = ({ isOpen, setIsOpen }) => {
     // Redirecionamento já é realizado no hook
     return null;
   }
-  const [paymentMethod, setPaymentMethod] = useState('debito');
-  const [numberOfInstallments, setNumberOfInstallments] = useState(null);
+const [pagamento, setPagamento] = useState('');
+const [parcelas, setParcelas] = useState('');
 
-  const handlePaymentMethodChange = (event) => {
-    setPaymentMethod(event.target.value);
-    if (event.target.value === 'credito') {
-      setNumberOfInstallments(1); // Valor inicial para crédito
-    } else {
-      setNumberOfInstallments(null); // Limpa o valor se não for crédito
-    }
-  };
+const handlePagamentoChange = (event) => {
+  setPagamento(event.target.value);
+  console.log('Valor selecionado:', pagamento);
+};
+
+
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -62,28 +60,29 @@ const ModalCadastroPago = ({ isOpen, setIsOpen }) => {
                   <span className="text-red-500">Campo obrigatório</span>
                 )}
               </div>
+              <div className="flex flex-col">
+              {/* ... other form fields */}
+              <label htmlFor="formaPagamento" className="text-black">
+                Forma de pagamento
+              </label>
+              <select
+                value={pagamento}
+                onChange={handlePagamentoChange}
+                {...register('pagamento', {required: true})}
+              >
+                <option value="">Selecione o método de pagamento</option>
+                <option value="debito">Débito</option>
+                <option value="credito">Crédito</option>
+              </select>
+              {pagamento === 'debito' && (
                 <div className="flex flex-col">
-                  <label htmlFor="formaPagamento" className="text-black">Forma de pagamento</label>
-                    <select 
-                    value={paymentMethod} 
-                    onChange={handlePaymentMethodChange} 
-                    {...register("formaPagamento", { required: true })}
-                    className="border-2 p-2 rounded-md mb-2">
-                      <option value="debito">debito</option>
-                      <option value="credito">Crédito</option>
-                      {/* Outras opções de pagamento */}
-                    </select>
-                    {paymentMethod === 'credito' && (
-                      <select value={numberOfInstallments} onChange={(e) => setNumberOfInstallments(e.target.value)}>
-                        <option value="1">1x</option>
-                        <option value="2">2x</option>
-                        {/* Outras opções de parcelamento */}
-                      </select>
-                    )}
-                  {errors.formaPagamento && (
-                    <span className="text-red-500">Campo obrigatório</span>
-                  )}
+                  {/* DEBITO section moved inside the form */}
+                  DEBITO 
+                  {/* ... fields specific to debit payment */}
                 </div>
+              )}
+              {/* ... other form fields */}
+            </div>
               <div className="flex flex-col">
                 <label htmlFor="valor" className="text-black">
                   Valor
@@ -98,19 +97,6 @@ const ModalCadastroPago = ({ isOpen, setIsOpen }) => {
                   <span className="text-red-500">Campo obrigatório</span>
                 )}
               </div>
-              {
-                  paymentMethod === 'credito' ? (
-                    <>
-                    <label htmlFor="parcelas" className="text-black">Parcelas</label>
-                    <input
-                      type="number"
-                      id="parcelas"
-                      {...register("parcelas", { required: false })}
-                      className="border-2 p-2 rounded-md mb-2"
-                    />
-                    </>
-                  ) : null
-                }
               <div className="flex flex-col">
                 <label htmlFor="date" className="text-black">
                   Data
@@ -152,6 +138,7 @@ const ModalCadastroPago = ({ isOpen, setIsOpen }) => {
                   Enviar
                 </button>
               </div>
+              
             </form>
           </div>
         </div>

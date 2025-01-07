@@ -21,9 +21,9 @@ export default function ThemeSwitcher  () {
       >
         {" "}
         {theme === "light" ? (
-          <Moon className="text-black" />
+          <Moon className="text-black h-4 w-4" />
         ) : (
-          <Sun className="text-white" />
+          <Sun className="text-white h-4 w-4" />
         )}{" "}
       </button>
     </div>

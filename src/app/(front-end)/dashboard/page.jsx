@@ -22,7 +22,7 @@ const page = () => {
 
     if(isLoading | !user) {
       return (
-        <div className='loading'>Carregando...</div>
+        <div className='loading h-full w-full bg-black'>Carregando...</div>
       )
     }
     if(!isAuthenticated) {

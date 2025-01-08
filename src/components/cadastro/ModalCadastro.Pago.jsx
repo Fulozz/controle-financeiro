@@ -65,24 +65,15 @@ const ModalCadastroPago = ({ isOpen, setIsOpen }) => {
               <select
                 id="formaPagamento"
                 {...register('pagamento', {required: true})}
+                className="border-2 p-2 rounded-md mb-2"
               >
                 <option value="">Selecione o método de pagamento</option>
                 <option value="debito">Débito</option>
                 <option value="credito">Crédito</option>
               </select>
               <div className="flex flex-col">
-                          <label htmlFor="parcelas" className="text-black">Caso for crédito: Parcelas</label>
-                          <select
-                            id="parcelas"
-                            value={numberOfInstallments}
-                            onChange={(e) => setNumberOfInstallments(e.target.value)}
-                            className="border-2 p-2 rounded-md mb-2"
-                          >
-                            <option value="1">1x</option>
-                            <option value="2">2x</option>
-                            <option value="3">3x</option>
-                            {/* Outras opções de parcelamento */}
-                          </select>
+                          <label htmlFor="parcelas" className="text-black">* Caso for crédito: <span className="font-semibold">Parcelas</span></label>
+                          <input type="number" name="" id="" className="border-2 p-2 rounded-md mb-2" />
                           {errors.parcelas && <span className="text-red-500">Selecione o número de parcelas</span>}
                         </div>
             </div>

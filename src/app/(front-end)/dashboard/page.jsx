@@ -40,10 +40,10 @@ return (
       </div>
 
 
-     {/* TODO: GASTOS RECENTES E OVERVIEW DOS MESES https://ui.shadcn.com/examples/dashboard */}
-     <div className="flex md:hidden dark:bg-[#18181A] justify-center items-center z-40 fixed right-6 bottom-6 h-[50px] w-[50px] rounded-lg  border border-gray-400 shadow-lg">
-      <BottomMenu user={user}/>
-     </div>
+      {/* TODO: GASTOS RECENTES E OVERVIEW DOS MESES https://ui.shadcn.com/examples/dashboard */}
+      <div className="flex md:hidden dark:bg-[#18181A] justify-center items-center z-40 fixed right-6 bottom-6 h-[50px] w-[50px] rounded-lg  border border-gray-400 shadow-lg">
+        <BottomMenu user={user}/>
+      </div>
     </div>
   );
 }

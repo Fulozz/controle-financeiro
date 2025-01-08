@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Wallet, ChevronsUpDown, ChevronUp, SquareTerminal, Settings } from 'lucide-react'
 import ThemeSwitcher from '@/components/theme/ThemeSwitcher'
 import { useProtectedRoute } from '@/hooks/useAuth';
-const Sidebar = () => {
+const Sidebar = ({ isActive, setIsActive}) => {
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
     const [isConfigurationOpen, setIsConfigurationOpen] = useState(false);
     const { isAuthenticated } = useProtectedRoute()
@@ -25,11 +25,11 @@ const Sidebar = () => {
                         <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-400">
                             <Wallet className="h-[24px] w-[24px]" />
                         </div>
-                        <div className={`grid flex-1 text-left text-sm leading-tight`}>
+                        <div className={`grid flex-1 text-left text-sm leading-tight ${isActive === false ? 'hidden' : ''}`}>
                             <span className='font-semibold text-black dark:text-white'>Fulo Inc</span>
                             <span className='text-xs text-black dark:text-white'>Entrerprise</span>
                         </div>
-                        <ChevronsUpDown className='h-[16px] w-[16px] text-black dark:text-white' />
+                        <ChevronsUpDown className={`h-[16px] w-[16px] text-black dark:text-white ${isActive === false ? 'hidden' : ''}`} />
                     </div>
                         <div className="relative flex w-full min-w-0 flex-col p-2">
                     <div className="duration-200 flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-none ease-linear text-[#F4F4F5B2] text-black dark:text-white">Principal</div>
@@ -46,15 +46,17 @@ const Sidebar = () => {
                             <ChevronUp className={`h-4 w-4 text-black dark:text-white ${isDashboardOpen ? 'rotate-180' : ''}`} />
                         </button>
                         </li>
-                        <li className={`ml-5 pl-1 border-l-[1px] ${isDashboardOpen ? '' : 'hidden'}`}>
-                        Overview
-                        </li>
-                        <li className={`ml-5 pl-1 border-l-[1px]  ${isDashboardOpen ? '' : 'hidden'}`}>
-                        Financeiro
-                        </li>
-                        <li className={`ml-5 pl-1 border-l-[1px]  ${isDashboardOpen ? '' : 'hidden'}`}>
-                        Relatórios
-                        </li>
+                        <div className="border-l-[1px] border-black dark:border-white ml-5 pl-1">
+                            <a href="/dashboard" className={`pl-1 ${isDashboardOpen ? '' : 'hidden'}`}>
+                            Overview
+                            </a>
+                            <li className={`pl-1  ${isDashboardOpen ? '' : 'hidden'}`}>
+                            Financeiro
+                            </li>
+                            <li className={`pl-1  ${isDashboardOpen ? '' : 'hidden'}`}>
+                            Relatórios
+                            </li>
+                        </div>
                     </ul>
                     <ul className="flex w-full min-w-0 flex-col gap-1">
                         <li className="flex pl-1 ">
@@ -69,9 +71,12 @@ const Sidebar = () => {
                             <ChevronUp className={`h-4 w-4 text-black dark:text-white ${isDashboardOpen ? 'rotate-180' : ''}`} />
                         </button>
                         </li>
-                        <li className={`ml-5 border-l-[1px] pl-1 flex items-center ${isConfigurationOpen ? '' : 'hidden'}`}>
-                        Tema <ThemeSwitcher className="h-4 w-4" />
-                        </li>
+                        
+                        <div className="ml-5 border-l-[1px] border-black dark:border-white ">
+                            <li className={`pl-1 flex items-center ${isConfigurationOpen ? '' : 'hidden'}`}>
+                            Tema <ThemeSwitcher className="h-4 w-4" />
+                            </li>
+                        </div>
                     </ul>
                     </div>
                 </nav>

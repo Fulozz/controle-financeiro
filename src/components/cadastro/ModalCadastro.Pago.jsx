@@ -20,18 +20,14 @@ const ModalCadastroPago = ({ isOpen, setIsOpen }) => {
     // Redirecionamento já é realizado no hook
     return null;
   }
-const [pagamento, setPagamento] = useState('');
-const [parcelas, setParcelas] = useState('');
 
-const handlePagamentoChange = (event) => {
-  setPagamento(event.target.value);
-  console.log('Valor selecionado:', pagamento);
-};
+
 
 
   const onSubmit = (data) => {
     console.log(data);
   };
+  
   return (
     <>
       {isOpen === true && (
@@ -39,6 +35,7 @@ const handlePagamentoChange = (event) => {
           className="fixed inset-0 z-40 bg-black/50" // Adjust opacity as needed
         />
       )}
+      
       {isOpen && (
         <div className="fixed inset-0 z-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg shadow-lg  md:w-[500px] md:h-auto w-screen h-screen">
@@ -66,22 +63,28 @@ const handlePagamentoChange = (event) => {
                 Forma de pagamento
               </label>
               <select
-                value={pagamento}
-                onChange={handlePagamentoChange}
+                id="formaPagamento"
                 {...register('pagamento', {required: true})}
               >
                 <option value="">Selecione o método de pagamento</option>
                 <option value="debito">Débito</option>
                 <option value="credito">Crédito</option>
               </select>
-              {pagamento === 'debito' && (
-                <div className="flex flex-col">
-                  {/* DEBITO section moved inside the form */}
-                  DEBITO 
-                  {/* ... fields specific to debit payment */}
-                </div>
-              )}
-              {/* ... other form fields */}
+              <div className="flex flex-col">
+                          <label htmlFor="parcelas" className="text-black">Caso for crédito: Parcelas</label>
+                          <select
+                            id="parcelas"
+                            value={numberOfInstallments}
+                            onChange={(e) => setNumberOfInstallments(e.target.value)}
+                            className="border-2 p-2 rounded-md mb-2"
+                          >
+                            <option value="1">1x</option>
+                            <option value="2">2x</option>
+                            <option value="3">3x</option>
+                            {/* Outras opções de parcelamento */}
+                          </select>
+                          {errors.parcelas && <span className="text-red-500">Selecione o número de parcelas</span>}
+                        </div>
             </div>
               <div className="flex flex-col">
                 <label htmlFor="valor" className="text-black">

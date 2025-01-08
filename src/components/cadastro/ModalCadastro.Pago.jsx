@@ -73,8 +73,7 @@ const ModalCadastroPago = ({ isOpen, setIsOpen }) => {
               </select>
               <div className="flex flex-col">
                           <label htmlFor="parcelas" className="text-black">* Caso for crédito: <span className="font-semibold">Parcelas</span></label>
-                          <input type="number" name="" id="" className="border-2 p-2 rounded-md mb-2" />
-                          {errors.parcelas && <span className="text-red-500">Selecione o número de parcelas</span>}
+                          <input type="number" name="parcelas" id="parcelas" className="border-2 p-2 rounded-md mb-2" />
                         </div>
             </div>
               <div className="flex flex-col">

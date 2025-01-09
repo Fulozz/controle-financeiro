@@ -1,7 +1,7 @@
 import React from 'react';
 import {PanelRightClose} from "lucide-react";
 
-const Navbar = () => {
+const SidebarController = ({ title }) => {
     title = "Visão Geral das Contas"
   return (
     <div className='h-full'>
@@ -11,4 +11,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default SidebarController

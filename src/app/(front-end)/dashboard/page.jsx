@@ -7,8 +7,9 @@ import DashboardCard from '@/components/dashboard/DashboardCard';
 import moment from 'moment';
 import { Plus } from 'lucide-react';
 import BottomMenu from '@/components/cadastro/BottomMenu';
+import SidebarController from '@/components/sidebar/controller/SidebarController';
 const page = () => {
-  moment.defineLocale('pt-br', {
+  moment.updateLocale('pt-br', {
     months: [
       'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
       'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
@@ -30,10 +31,10 @@ const page = () => {
       return null;
     }
 console.log(user)
+    let title = "Visão Geral das Contas"
 return (
     <div className="pt-3">
-      <h1 className='text-[1.8rem] font-semibold '>Visão Geral das Contas</h1>
-      <h4>Mês de referencia • {mesPorExtenso} </h4>
+      <SidebarController title={title} />
 
       <div className="max-w-2xl md:max-w-none mx-auto pt-2">
         <DashboardCard user={user} mes={mesPorExtenso}  />

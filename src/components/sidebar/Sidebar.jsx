@@ -4,11 +4,12 @@ import logo  from '@/components/assets/logo.png'
 import Image from 'next/image'
 import { Wallet, ChevronsUpDown, ChevronUp, SquareTerminal, Settings } from 'lucide-react'
 import ThemeSwitcher from '@/components/theme/ThemeSwitcher'
-import { useProtectedRoute } from '@/hooks/useAuth';
+import { isUserLoggedIn } from '@/hooks/useAuth';
 const Sidebar = ({ isActive, setIsActive}) => {
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
     const [isConfigurationOpen, setIsConfigurationOpen] = useState(false);
-    const { isAuthenticated } = useProtectedRoute()
+    const  isAuthenticated  = isUserLoggedIn()
+    console.log(isUserLoggedIn())
     const handleDashboardToggle = () => {
         setIsDashboardOpen(!isDashboardOpen);
       };
@@ -20,7 +21,7 @@ const Sidebar = ({ isActive, setIsActive}) => {
     <>
         {
             isAuthenticated && (
-                <nav className="fixed inset-y-0 left-0 w-64 bg-[#FAFAFA] dark:bg-[#18181B] ">
+                <nav className={`fixed inset-y-0 left-0 bg-[#FAFAFA] dark:bg-[#18181B] ${isActive ? 'w-64' : 'w-16'} `}>
                     <div className="flex text-white items-center justify-start m-4 hover:bg-[#F4F4F5] dark:hover:bg-[#27272A] rounded-lg gap-2 p-2">
                         <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-400">
                             <Wallet className="h-[24px] w-[24px]" />

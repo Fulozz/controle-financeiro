@@ -2,16 +2,20 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 
+// Contexto para compartilhar o estado de autenticação
 const AuthContext = createContext();
 
+// Provider para envolver a aplicação e fornecer o contexto de autenticação
 const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
+    // Verifica se há um token de autenticação armazenado
     const token = localStorage.getItem('token');
 
     if (token) {
+      // Envia uma requisição para o backend para validar o token
       fetch(`https://portfolio-backend-zpig.onrender.com/api/v1/validate-token`, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -39,6 +43,7 @@ const AuthProvider = ({ children }) => {
   );
 };
 
+// Hook para acessar o contexto de autenticação
 const useAuth = () => {
   const context = useContext(AuthContext);
 
@@ -49,6 +54,8 @@ const useAuth = () => {
   return context;
 };
 
+// Hook para verificar se o usuário está logado e caso não esteja redirecione
+// const { isAuthenticated, isLoading } = useProtectedRoute()
 const useProtectedRoute = () => {
   const { isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
@@ -62,4 +69,12 @@ const useProtectedRoute = () => {
   return { isLoading, isAuthenticated };
 };
 
-export { AuthProvider, useAuth, useProtectedRoute };
+// Hook para verificar se o usuário está logado sem realizar redirecionamento
+// const isAuthenticated = isUserLoggedIn()
+const isUserLoggedIn = () => {
+  const { isAuthenticated } = useAuth();
+  console.log(isAuthenticated, "IsuserLoggedIn")
+  return isAuthenticated;
+};
+
+export { AuthProvider, useAuth, useProtectedRoute, isUserLoggedIn };

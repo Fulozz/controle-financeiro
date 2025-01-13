@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
-
+// Hook para buscar dados do usuário
 const useUser = () => {
     
     const [user, setUser] = useState({name: '', email: '', id: ''})

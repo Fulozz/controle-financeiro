@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Hook para buscar dados financeiros do usuário
 const useFinancial = (userID, mesRef) => {
   const token = localStorage.getItem('token');
   const [data, setData] = useState(null);
@@ -13,6 +14,7 @@ const useFinancial = (userID, mesRef) => {
       setError(null);
 
       try {
+        // Envia uma requisição para o backend para pegar os dados financeiros
         const response = await axios.get(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/finances/${userID}/${mesRef}`, {
           headers: {
             Authorization: `Bearer ${token}`,

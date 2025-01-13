@@ -1,13 +1,21 @@
 import React from 'react';
 import {PanelRightClose} from "lucide-react";
+import { isUserLoggedIn } from '@/hooks/useAuth';
 
 const SidebarController = ({ title }) => {
-    title = "Visão Geral das Contas"
+  const isAuthenticated = isUserLoggedIn() 
+
   return (
-    <div className='h-full'>
-      <PanelRightClose className=""/>
-      <h1 className='text-[1.8rem] font-semibold '>{title}</h1>
-    </div>
+    <>
+      {
+        isAuthenticated && (
+          <div className='h-full flex items-center p-4'>
+            <PanelRightClose className="h-5 w-5"/>
+            <h1 className='text-[1.8rem] font-semibold '>{title}</h1>
+          </div>
+        )
+      }
+    </>
   )
 }
 

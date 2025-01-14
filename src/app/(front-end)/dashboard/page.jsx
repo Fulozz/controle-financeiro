@@ -8,6 +8,7 @@ import moment from 'moment';
 import { Plus } from 'lucide-react';
 import BottomMenu from '@/components/cadastro/BottomMenu';
 import SidebarController from '@/components/sidebar/controller/SidebarController';
+import { useSidebar } from '@/hooks/useSidebar';
 const page = () => {
   moment.updateLocale('pt-br', {
     months: [
@@ -18,6 +19,8 @@ const page = () => {
     const dataAtual = new Date();
     const mesPorExtenso = moment(dataAtual).format('MMMM');
     const user = useUser();
+    const { isActive, setIsActive } = useSidebar();
+
     const { isLoading, isAuthenticated } = useProtectedRoute();
 
 
@@ -33,9 +36,11 @@ const page = () => {
 console.log(user)
     let title = "Visão Geral das Contas"
 return (
-    <div className="pt-3">
+    <div className={`block   ${isActive === false ? "px-0" : "pl-[270px] pt-2"}`} >
+      <div className="">
       <SidebarController title={title} />
 
+      </div>
       <div className="max-w-2xl md:max-w-none mx-auto pt-2">
         <DashboardCard user={user} mes={mesPorExtenso}  />
       </div>

@@ -6,6 +6,7 @@ import { ThemeProvider } from 'next-themes';
 import Sidebar from '@/components/sidebar/Sidebar';
 import { AuthProvider, useProtectedRoute } from "@/hooks/useAuth";
 import SidebarController from '@/components/sidebar/controller/SidebarController';
+import { SidebarProvider } from '@/hooks/useSidebar';
 const Provider = ({ children }) => {
     const [isActive, setIsActive] = useState(false)
 
@@ -14,10 +15,12 @@ const Provider = ({ children }) => {
         <div>
             <ThemeProvider attribute="class" defaultTheme='dark'>
                 <AuthProvider>
+                    <SidebarProvider>
                     <Toaster position="top-center" reverseOrder={false} toastOptions={{duration: 2000}} />
-                    <SidebarController isActive={isActive} setIsActive={setIsActive} />
+ 
                     <Sidebar isActive={isActive} setIsActive={setIsActive} />
                     {children}
+                    </SidebarProvider>
                 </AuthProvider>
             </ThemeProvider>
         </div>

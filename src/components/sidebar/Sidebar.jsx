@@ -28,7 +28,10 @@ const Sidebar = () => {
                         </div>
                         <ChevronsUpDown className={`h-[16px] w-[16px] text-black dark:text-white ${isActive === false ? 'hidden' : ''}`} />
                     </div>
-                        <div className="relative flex w-full min-w-0 flex-col p-2">
+                    <div className="group relative inline-block">
+                        
+                    </div>
+                <div className="relative flex w-full min-w-0 flex-col p-2">
                     <div className="duration-200 flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-none ease-linear text-[#F4F4F5B2] text-black dark:text-white">Principal</div>
                     <ul className="flex w-full min-w-0 flex-col gap-1">
                         <li className="flex pl-1 ">

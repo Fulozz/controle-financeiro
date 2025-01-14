@@ -9,6 +9,7 @@ import { Plus } from 'lucide-react';
 import BottomMenu from '@/components/cadastro/BottomMenu';
 import SidebarController from '@/components/sidebar/controller/SidebarController';
 import { useSidebar } from '@/hooks/useSidebar';
+import GastosTable from '@/components/dashboard/tables/GastosTable';
 const page = () => {
   moment.updateLocale('pt-br', {
     months: [
@@ -45,7 +46,10 @@ return (
         <DashboardCard user={user} mes={mesPorExtenso}  />
       </div>
 
+      <div className="max-w-2xl flex md:max-w-none mx-auto pt-2">
+        <GastosTable />
 
+      </div>
       {/* TODO: GASTOS RECENTES E OVERVIEW DOS MESES https://ui.shadcn.com/examples/dashboard */}
       <div className="flex md:hidden dark:bg-[#18181A] justify-center items-center z-40 fixed right-6 bottom-6 h-[50px] w-[50px] rounded-lg  border border-gray-400 shadow-lg">
         <BottomMenu user={user}/>

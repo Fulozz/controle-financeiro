@@ -21,18 +21,18 @@ const GastosTable = () => {
       <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
         <thead>
           <tr>
-            <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50  text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
               Data
             </th>
-            <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50  text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
               Descrição
             </th>
-            <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            <th className="px-6 py-3 bg-gray-50  text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
               Valor
             </th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+        <tbody className="bg-white divide-y dark:bg-black dark:divide-gray-700">
           {gastos.slice(0, limit).map((gasto) => (
             <tr key={gasto.id}>
               <td className="px-6 py-4 whitespace-nowrap">{gasto.data}</td>

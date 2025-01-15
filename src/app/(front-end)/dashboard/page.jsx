@@ -47,7 +47,7 @@ return (
         <DashboardCard user={user} mes={mesPorExtenso}  />
       </div>
 
-      <div className="max-w-2xl  md:max-w-none mx-auto pt-2">
+      <div className="max-w-2xl md:max-w-none mx-auto pt-2">
         <DashboardTables />
 
       </div>

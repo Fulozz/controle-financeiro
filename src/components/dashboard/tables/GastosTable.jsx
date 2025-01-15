@@ -76,7 +76,7 @@ const GastosTable = () => {
   const limit = 10;
 
   return (
-    <div className="overflow-w-auto border-white border-2 rounded-lg p-4">
+    <div className="overflow-w-auto border-white border-2 rounded-lg p-2">
       <table className="min-w-full divide-y divide-gray-700 dark:divide-gray-200">
         <caption className="">Gastos recentes</caption>
         <thead>
@@ -123,7 +123,7 @@ const GastosTable = () => {
           ))}
         </tbody>
       </table>
-      <div className="text-center py-4 text-gray-500 dark:text-gray-400">
+      <div className="text-center pt-2 text-gray-500 dark:text-gray-400">
         Exibindo os ultimos {limit} itens
       </div>
     </div>

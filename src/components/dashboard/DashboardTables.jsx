@@ -8,9 +8,8 @@ const DashboardTables = () => {
             <div className="aspect-video rounded-xl bg-white shadow-lg dark:bg-[#18181A] flex flex-col items-center justify-center">
                 <GastosTable />
             </div>
-            <div className="aspect-video rounded-xl bg-white shadow-lg dark:bg-[#18181A] flex flex-col items-center justify-center">
-                <GastosTable />
-            </div>
+
+            <GastosTable />
         </div>
     </div>
   )

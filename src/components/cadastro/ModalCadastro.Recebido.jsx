@@ -1,10 +1,14 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import { useProtectedRoute } from "@/hooks/useAuth";
 import { useForm } from "react-hook-form";
 import useUser from "@/hooks/useUser";
-
+import toast from "react-hot-toast";
+import axios from "axios";
 const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
   const { isLoading, isAuthenticated } = useProtectedRoute();
+  const {postLoading, setPostLoading} = useState(false);
+
   const user = useUser();
   const {
     register,
@@ -18,8 +22,27 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
     // Redirecionamento já é realizado no hook
     return null;
   }
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    setPostLoading(true)
+    try{
+      const response = await axios.post({
+        url: "https://portfolio-backend-zpig.onrender.com/api/v1/transaction/register",
+        data: {
+          userID: user.id,
+          ...data,
+        }
+      })
+      if(!response.ok){
+        setPostLoading(false)
+        toast.error("Erro ao cadastrar recebido")
+      }
+      toast.success("Recebido cadastrado com sucesso")
+      setPostLoading(false)
+      setIsOpen(false)
+    }catch (error){
+      console.log(error)
+    }
+
   };
   return (
     <>

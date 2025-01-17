@@ -1,20 +1,26 @@
 "use client"
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import logo  from '@/components/assets/logo.png'
 import Image from 'next/image'
-import { Wallet, ChevronsUpDown, ChevronUp, SquareTerminal, Settings } from 'lucide-react'
+import { Wallet, ChevronsUpDown, ChevronUp, SquareTerminal, Settings, DollarSign } from 'lucide-react'
 import ThemeSwitcher from '@/components/theme/ThemeSwitcher'
 import { isUserLoggedIn } from '@/hooks/useAuth';
 import { useSidebar } from '@/hooks/useSidebar'
+import ModalCadastroPago from '../cadastro/ModalCadastro.Pago'
+import ModalCadastroRecebido from '../cadastro/ModalCadastro.Recebido'
 const Sidebar = () => {
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
+    const [isFinanceiroOpen, setIsFinanceiroOpen] = useState(false);
     const [isConfigurationOpen, setIsConfigurationOpen] = useState(false);
+    const [isOpenPago, setIsOpenPago] = useState(false);
+    const [isOpenRecebido, setIsOpenRecebido] = useState(false);
     const  isAuthenticated  = isUserLoggedIn()
     const { isActive, setIsActive} = useSidebar()
 
 
   return (
-    <>
+    <>  
+
         {
             isAuthenticated && (
                 <nav className={`fixed inset-y-0 left-0  bg-[#FAFAFA] dark:bg-[#18181B] ${isActive ? 'w-64 translate-x-0 transition-all duration-300 ease-in-out' : '-translate-x-full transition-all duration-300 ease-in-out'}`}>
@@ -51,10 +57,30 @@ const Sidebar = () => {
                             Overview
                             </a>
                             <li className={`pl-1  ${isDashboardOpen ? '' : 'hidden'}`}>
-                            Financeiro
-                            </li>
-                            <li className={`pl-1  ${isDashboardOpen ? '' : 'hidden'}`}>
                             Relatórios
+                            </li>
+                        </div>
+                    </ul>
+                    <ul className="flex w-full min-w-0 flex-col gap-1">
+                        <li className="flex pl-1 ">
+                        <button 
+                            className="flex text-[#F4F4F5] overflow-hidden outline-none rounded-md justify-between items-center w-full pr-6 py-2 text-sm font-medium" 
+                            onClick={() => setIsFinanceiroOpen(!isFinanceiroOpen)} 
+                        >
+                            <div className='flex gap-2 ml-2'>
+                            <DollarSign className='h-5 w-5 text-black dark:text-white' />
+                            <span className="text-black dark:text-white">Financeiro</span>
+                            </div>
+                            <ChevronUp className={`h-4 w-4 text-black dark:text-white ${isFinanceiroOpen ? 'rotate-180' : ''}`} />
+                        </button>
+                        </li>
+                        
+                        <div className="ml-5 border-l-[1px] border-black dark:border-white ">
+                            <li onClick={()=> setIsOpenPago(!isOpenPago)} className={`pl-1 cursor-pointer flex items-center ${isFinanceiroOpen ? '' : 'hidden'}`}>
+                                Pago
+                            </li>
+                            <li onClick={()=> setIsOpenRecebido(!isOpenRecebido)} className={`pl-1 cursor-pointer flex items-center ${isFinanceiroOpen ? '' : 'hidden'}`}>
+                                Recebido
                             </li>
                         </div>
                     </ul>

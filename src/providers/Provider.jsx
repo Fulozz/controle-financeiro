@@ -5,11 +5,12 @@ import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "next-themes";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { AuthProvider, useProtectedRoute } from "@/hooks/useAuth";
+import { useSidebar } from "@/hooks/useSidebar";
 import SidebarController from "@/components/sidebar/controller/SidebarController";
 import { SidebarProvider } from "@/hooks/useSidebar";
 import { GastosProvider } from "@/context/GastosContext";
 const Provider = ({ children }) => {
-  const [isActive, setIsActive] = useState(false);
+  useSidebar
 
   // testar isso para controler a sidebar se o usuário estiver autenticado
   return (
@@ -24,7 +25,11 @@ const Provider = ({ children }) => {
             />
             <Sidebar />
             <SidebarController />
-            <GastosProvider>{children}</GastosProvider>
+            <GastosProvider>
+              <div className={``}>
+              {children}
+              </div>
+            </GastosProvider>
           </SidebarProvider>
         </AuthProvider>
       </ThemeProvider>

@@ -33,7 +33,6 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
       data.userID = user.id;
       data.tipo = "recebido";
       data.status = "recebido";
-      // TODO: implementar reload de tela ao concluir e fornecer feedback ao usuário
       await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/register`,data)
       toast.success("Recebido cadastrado com sucesso")
       setPostLoading(false)

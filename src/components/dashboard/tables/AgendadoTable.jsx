@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  Clock, Check, X } from "lucide-react";
+import {  Dot, Check, X } from "lucide-react";
 const AgendadoTable = () => {
   const gastos = [
     {
@@ -98,7 +98,7 @@ const AgendadoTable = () => {
     {
       id: 10,
       data: "2025-01-05",
-      status: "parcelado",
+      status: "cancelado",
       descricao: "Compra de roupas",
       valor: "R$ 500,00",
       pago: true,
@@ -110,7 +110,7 @@ const AgendadoTable = () => {
   const limit = 10;
 
   return (
-    <div className="overflow-w-auto border-white border-2 rounded-lg p-2">
+    <div className="overflow-w-auto shadow-lg bg-white dark:bg-black border-white border-2 rounded-lg p-2">
       <table className="min-w-full divide-y divide-gray-700 dark:divide-gray-200">
         <caption className="">Gastos Recorrentes/Agendados</caption>
         <thead>
@@ -140,21 +140,21 @@ const AgendadoTable = () => {
                 <td className=" items-center">
                   {gasto.tipo} - {gasto.quantidadeParcelasAtual}/{gasto.quantidadeParcelasTotal}
                 </td>
-              ) : <td className=" items-center">{gasto.tipo} </td> }
+              ) : <td className="items-center">{gasto.tipo} </td> }
               {gasto.status === "recorrente" ? (
                 <td className="flex  items-center">
-                  {gasto.pago ? <Check  className="h-5 w-5 mr-2 text-green-500 " />: <Clock className="h-5 w-5 mr-2 text-yellow-400" /> }
+                  {gasto.pago ? <Dot size={32} strokeWidth={3} className=" mr-2 text-green-500 " />: <Dot size={32} strokeWidth={3} className=" mr-2 text-yellow-500 " /> }
                   {gasto.status}
                 </td>
               ) : 
               gasto.status === "parcelado" ? (
                 <td className="flex items-center">
-                  {gasto.pago ? <Check  className="h-5 w-5 mr-2 text-green-500 " />: <Clock className="h-5 w-5 mr-2 text-yellow-400" /> }
+                  {gasto.pago ? <Dot size={32} strokeWidth={3} className=" mr-2 text-green-500 " />: <Dot size={32} strokeWidth={3} className=" mr-2 text-yellow-500 " /> }
                   {gasto.status}
                 </td>
               ) : gasto.status === "cancelado" ? (
                 <td className="flex items-center">
-                  <X className="h-5 w-5 mr-2 text-red-500" />
+                  <Dot size={32} strokeWidth={3} className=" mr-2 text-red-500 "  />
                   {gasto.status}
                 </td>
               ) : null

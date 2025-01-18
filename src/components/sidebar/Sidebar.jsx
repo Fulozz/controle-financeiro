@@ -75,31 +75,8 @@ const Sidebar = () => {
                         </li>
                         
                         <div className="ml-5 border-l-[1px] border-black dark:border-white ">
-                            <li onClick={()=> setIsOpenPago(!isOpenPago)} className={`pl-1 cursor-pointer flex items-center ${isFinanceiroOpen ? '' : 'hidden'}`}>
-                                Pago
-                            </li>
-                            <li onClick={()=> setIsOpenRecebido(!isOpenRecebido)} className={`pl-1 cursor-pointer flex items-center ${isFinanceiroOpen ? '' : 'hidden'}`}>
-                                Recebido
-                            </li>
-                        </div>
-                    </ul>
-                    <ul className="flex w-full min-w-0 flex-col gap-1">
-                        <li className="flex pl-1 ">
-                        <button 
-                            className="flex text-[#F4F4F5] overflow-hidden outline-none rounded-md justify-between items-center w-full pr-6 py-2 text-sm font-medium" 
-                            onClick={() => setIsConfigurationOpen(!isConfigurationOpen)} 
-                        >
-                            <div className='flex gap-2 ml-2'>
-                            <Settings className='h-5 w-5 text-black dark:text-white' />
-                            <span className="text-black dark:text-white">Configuração</span>
-                            </div>
-                            <ChevronUp className={`h-4 w-4 text-black dark:text-white ${isDashboardOpen ? 'rotate-180' : ''}`} />
-                        </button>
-                        </li>
-                        
-                        <div className="ml-5 border-l-[1px] border-black dark:border-white ">
-                            <li className={`pl-1 flex items-center ${isConfigurationOpen ? '' : 'hidden'}`}>
-                            Tema <ThemeSwitcher className="h-4 w-4" />
+                            <li className={`pl-1 cursor-pointer flex items-center ${isFinanceiroOpen ? '' : 'hidden'}`}>
+                                <a href="/recorrentes">Recorrentes</a>
                             </li>
                         </div>
                     </ul>

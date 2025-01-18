@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import {  Clock, Check, X, DollarSign } from "lucide-react";
+import {  X,  Dot } from "lucide-react";
 import  useFinancialMonth  from '@/hooks/useFinancialMonth';
 const MovimentacoesRecentes = ({user}) => {
   const userID = user.id
@@ -17,7 +17,7 @@ const MovimentacoesRecentes = ({user}) => {
     const sortedGastos = gastos.slice(0, limit).sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
-    <div className="overflow-w-auto border-white border-2 rounded-lg p-2">
+    <div className="overflow-w-auto shadow-lg bg-white dark:bg-black border-white border-2 rounded-lg p-2">
       <table className="min-w-full divide-y divide-gray-700 dark:divide-gray-200">
         <caption className="">Movimentações recentes</caption>
         <thead>
@@ -43,23 +43,23 @@ const MovimentacoesRecentes = ({user}) => {
               <td>{gasto.date}</td>
               {gasto.status === "pago" ? (
                 <td className="flex  items-center">
-                  <Check  className="h-5 w-5 mr-2 text-green-500 " />
+                  <Dot size={32} strokeWidth={3} className=" mr-2 text-green-500 " />
                   {gasto.status}
                 </td>
               ) : 
               gasto.status === "agendado" ? (
                 <td className="flex items-center">
-                  <Clock className="h-5 w-5 mr-2 text-yellow-400" />
+                  <Dot size={32} strokeWidth={3} className=" mr-2 text-yellow-500 " />
                   {gasto.status}
                 </td>
               ) : gasto.status === "cancelado" ? (
                 <td className="flex items-center">
-                  <X className="h-5 w-5 mr-2 text-red-500" />
+                  <X size={32} strokeWidth={3} className=" mr-2 text-red-500 " />
                   {gasto.status}
                 </td>
               ) : gasto.status === "recebido" ? (
                 <td className="flex items-center">
-                  <DollarSign className="h-5 w-5 mr-2 text-blue-500" />
+                  <Dot size={32} strokeWidth={3} className=" mr-2 text-blue-500 " />
                   {gasto.status}
                 </td>
               ) : null

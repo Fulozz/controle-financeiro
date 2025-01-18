@@ -33,13 +33,11 @@ const ModalCadastroPago = ({ isOpen, setIsOpen }) => {
       setPostLoading(true)
       data.userID = user.id;
       data.tipo = "pago"
-      // TODO: implementar reload de tela ao concluir e fornecer feedback ao usuário
       await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/register`,data)
-      
-      
       toast.success("Pagamento cadastrado com sucesso")
       setPostLoading(false)
       setIsOpen(false)
+      window.location.reload()
     }catch (error){
       console.log(error)
       toast.error("Erro ao cadastrar pagamento")

@@ -8,6 +8,7 @@ const AgendadoTable = () => {
       status: "agendado",
       descricao: "Compra de supermercado",
       valor: "R$ 150,00",
+      pago: false,
     },
     {
       id: 2,
@@ -15,6 +16,7 @@ const AgendadoTable = () => {
       status: "recorrente",
       descricao: "Gasolina",
       valor: "R$ 200,00",
+      pago: true,
     },
     {
       id: 3,
@@ -22,6 +24,7 @@ const AgendadoTable = () => {
       status: "recorrente",
       descricao: "Aluguel",
       valor: "R$ 1.200,00",
+      pago: false,
     },
     {
       id: 4,
@@ -29,6 +32,7 @@ const AgendadoTable = () => {
       status: "recorrente",
       descricao: "Conta de luz",
       valor: "R$ 100,00",
+      pago: true,
     },
     {
       id: 5,
@@ -36,6 +40,7 @@ const AgendadoTable = () => {
       status: "recorrente",
       descricao: "Conta de água",
       valor: "R$ 80,00",
+      pago: false,
     },
     {
       id: 6,
@@ -43,6 +48,7 @@ const AgendadoTable = () => {
       status: "agendado",
       descricao: "Internet",
       valor: "R$ 120,00",
+      pago: true,
     },
     {
       id: 7,
@@ -50,6 +56,7 @@ const AgendadoTable = () => {
       status: "recorrente",
       descricao: "Academia",
       valor: "R$ 90,00",
+      pago: false,
     },
     {
       id: 8,
@@ -57,6 +64,7 @@ const AgendadoTable = () => {
       status: "recorrente",
       descricao: "Restaurante",
       valor: "R$ 250,00",
+      pago: true,
     },
     {
       id: 9,
@@ -64,13 +72,15 @@ const AgendadoTable = () => {
       status: "agendado",
       descricao: "Cinema",
       valor: "R$ 50,00",
+      pago: false,
     },
     {
       id: 10,
       data: "2025-01-22",
-      status: "agendado",
+      status: "cancelado",
       descricao: "Farmácia",
       valor: "R$ 30,00",
+      pago: false,
     },
   ];
   const limit = 10;
@@ -101,13 +111,13 @@ const AgendadoTable = () => {
               <td>{gasto.data}</td>
               {gasto.status === "recorrente" ? (
                 <td className="flex  items-center">
-                  <Check  className="h-5 w-5 mr-2 text-green-500 " />
+                  {gasto.pago ? <Check  className="h-5 w-5 mr-2 text-green-500 " />: <Clock className="h-5 w-5 mr-2 text-yellow-400" /> }
                   {gasto.status}
                 </td>
               ) : 
               gasto.status === "agendado" ? (
                 <td className="flex items-center">
-                  <Clock className="h-5 w-5 mr-2 text-yellow-400" />
+                  {gasto.pago ? <Check  className="h-5 w-5 mr-2 text-green-500 " />: <Clock className="h-5 w-5 mr-2 text-yellow-400" /> }
                   {gasto.status}
                 </td>
               ) : gasto.status === "cancelado" ? (

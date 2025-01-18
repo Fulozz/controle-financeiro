@@ -17,7 +17,6 @@ const Provider = ({ children }) => {
                 <AuthProvider>
                     <SidebarProvider>
                     <Toaster position="top-center" reverseOrder={false} toastOptions={{duration: 2000}} />
-                    <SidebarController isActive={isActive} setIsActive={setIsActive} />
                     <Sidebar isActive={isActive} setIsActive={setIsActive} />
                     {children}
                     </SidebarProvider>

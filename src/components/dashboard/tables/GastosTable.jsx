@@ -1,78 +1,23 @@
-import React, { useState } from "react";
+"use client"
+import React from "react";
 import {  Clock, Check, X } from "lucide-react";
-const GastosTable = () => {
-  const gastos = [
-    {
-      id: 1,
-      data: "2023-01-01",
-      status: "aberto",
-      descricao: "Compra de supermercado",
-      valor: "R$ 150,00",
-    },
-    {
-      id: 2,
-      data: "2023-01-02",
-      status: "pago",
-      descricao: "Gasolina",
-      valor: "R$ 200,00",
-    },
-    {
-      id: 3,
-      data: "2023-01-03",
-      status: "pago",
-      descricao: "Aluguel",
-      valor: "R$ 1.200,00",
-    },
-    {
-      id: 4,
-      data: "2023-01-04",
-      status: "pago",
-      descricao: "Conta de luz",
-      valor: "R$ 100,00",
-    },
-    {
-      id: 5,
-      data: "2023-01-05",
-      status: "pago",
-      descricao: "Conta de água",
-      valor: "R$ 80,00",
-    },
-    {
-      id: 6,
-      data: "2023-01-06",
-      status: "pago",
-      descricao: "Internet",
-      valor: "R$ 120,00",
-    },
-    {
-      id: 7,
-      data: "2023-01-07",
-      status: "pago",
-      descricao: "Academia",
-      valor: "R$ 90,00",
-    },
-    {
-      id: 8,
-      data: "2023-01-08",
-      status: "pago",
-      descricao: "Restaurante",
-      valor: "R$ 250,00",
-    },
-    {
-      id: 9,
-      data: "2023-01-09",
-      status: "pago",
-      descricao: "Cinema",
-      valor: "R$ 50,00",
-    },
-    {
-      id: 10,
-      data: "2023-01-10",
-      status: "pago",
-      descricao: "Farmácia",
-      valor: "R$ 30,00",
-    },
-  ];
+import  useFinancialMonth  from '@/hooks/useFinancialMonth';
+const GastosTable = ({user}) => {
+  const userID = user.id
+  const mesRef = new Date().toISOString().slice(0, 7)
+  
+  const { data: gastos, isLoading, error } = useFinancialMonth(userID, mesRef);
+  console.log(gastos, 'useFinancialMonth')
+
+  if (isLoading) {
+    return <div>Carregando...</div>;
+  }
+
+  if (error) {
+    return <div>Erro ao carregar dados: {error.message}</div>;
+  }
+
+
   const limit = 10;
 
   return (
@@ -96,7 +41,7 @@ const GastosTable = () => {
           </tr>
         </thead>
         <tbody>
-          {gastos.slice(0, limit).map((gasto) => (
+          {gastos.map((gasto) => (
             <tr key={gasto.id}>
               <td>{gasto.data}</td>
               {gasto.status === "pago" ? (

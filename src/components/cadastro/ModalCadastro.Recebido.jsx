@@ -7,8 +7,8 @@ import toast from "react-hot-toast";
 import axios from "axios";
 const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
   const { isLoading, isAuthenticated } = useProtectedRoute();
-  const {postLoading, setPostLoading} = useState(false);
-
+  const [postLoading, setPostLoading]= useState(false);
+  const token = localStorage.getItem('token');
   const user = useUser();
   const {
     register,
@@ -23,24 +23,31 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
     return null;
   }
   const onSubmit = async (data) => {
-    setPostLoading(true)
+    console.log(data)
     try{
-      const response = await axios.post({
-        url: "https://portfolio-backend-zpig.onrender.com/api/v1/transaction/register",
-        data: {
-          userID: user.id,
-          ...data,
-        }
-      })
+      const monthNames = [
+        "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+        "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
+      ];
+      const date = new Date(data.date);
+  
+      setPostLoading(true)
+      data.userID = user.id;
+      data.mesRef = monthNames[date.getMonth()];
+      data.tipo = "recebido"
+      const response = await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/register`,data)
       if(!response.ok){
         setPostLoading(false)
         toast.error("Erro ao cadastrar recebido")
       }
+      
       toast.success("Recebido cadastrado com sucesso")
       setPostLoading(false)
       setIsOpen(false)
+      console.log(data)
     }catch (error){
       console.log(error)
+      toast.error("Erro ao cadastrar recebido")
     }
 
   };
@@ -65,7 +72,7 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
                 <input
                   type="text"
                   id="titulo"
-                  {...register("titulo", { required: true, maxLength: 20 })}
+                  {...register("titulo", { required: true, maxLength: 50 })}
                   className="border-2 p-2 rounded-md mb-2"
                 />
                 {errors.descricao && (
@@ -79,6 +86,7 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
                 <input
                   type="number"
                   id="valor"
+                  step="any"
                   {...register("valor", { required: true })}
                   className="border-2 p-2 rounded-md mb-2"
                 />
@@ -114,12 +122,6 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
                 )}
               </div>
               <div className="flex justify-between ml-2">
-                <div
-                  onClick={() => setIsOpen(false)}
-                  className="text-white bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded"
-                >
-                  Sair
-                </div>
                 <button
                   type="submit"
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded"

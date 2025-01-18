@@ -1,6 +1,5 @@
 import useFinancial from '@/hooks/useFinancial';
 import React from 'react';
-import moment from 'moment/moment';
 
 const DashboardCard = ({ user, mes }) => {
   const userID = user.id
@@ -45,7 +44,7 @@ const DashboardCard = ({ user, mes }) => {
           <h2 className='text-[2.2rem] text-blue-500 font-bold'>{totalRecebido ? (formatValue(totalRecebido)): ('R$00,00')}</h2>
         </div>
         <div className="aspect-video rounded-xl bg-white shadow-lg dark:bg-[#18181A] flex flex-col items-center justify-center">
-          <p className='text-base md:text-[1.4rem] '>Total recebido - <span className='font-bold'>{mes}</span> </p>
+          <p className='text-base md:text-[1.4rem] '>Total pago - <span className='font-bold'>{mes}</span> </p>
           <h2 className='text-[2.2rem] text-red-500 font-bold'>-{totalPago ? (formatValue(totalPago)): ('R$00,00')}</h2>
         </div>
         <div className="aspect-video rounded-xl bg-white shadow-lg dark:bg-[#18181A] flex flex-col items-center justify-center">

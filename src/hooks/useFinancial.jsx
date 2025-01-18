@@ -27,7 +27,7 @@ const useFinancial = (userID, mesRef) => {
         setError(error);
       } finally {
         setIsLoading(false);
-        console.log('Busca de dados financeiros finalizada.');
+        console.log(data,'Busca de dados financeiros finalizada.');
       }
     };
 

@@ -20,7 +20,7 @@ const ModalCadastroPago = ({ isOpen, setIsOpen }) => {
     // Redirecionamento já é realizado no hook
     return null;
   }
-
+// TODO: Implementar a função onSubmit
 
 
 

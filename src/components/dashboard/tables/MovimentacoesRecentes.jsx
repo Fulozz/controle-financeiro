@@ -2,7 +2,7 @@
 import React from "react";
 import {  Clock, Check, X, DollarSign } from "lucide-react";
 import  useFinancialMonth  from '@/hooks/useFinancialMonth';
-const GastosTable = ({user}) => {
+const MovimentacoesRecentes = ({user}) => {
   const userID = user.id
   const mesRef = new Date().toISOString().slice(0, 7)
   
@@ -19,7 +19,7 @@ const GastosTable = ({user}) => {
   return (
     <div className="overflow-w-auto border-white border-2 rounded-lg p-2">
       <table className="min-w-full divide-y divide-gray-700 dark:divide-gray-200">
-        <caption className="">Gastos recentes</caption>
+        <caption className="">Movimentações recentes</caption>
         <thead>
           <tr>
             <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
@@ -59,13 +59,13 @@ const GastosTable = ({user}) => {
                 </td>
               ) : gasto.status === "recebido" ? (
                 <td className="flex items-center">
-                  <DollarSign className="h-5 w-5 mr-2 text-green-500" />
+                  <DollarSign className="h-5 w-5 mr-2 text-blue-500" />
                   {gasto.status}
                 </td>
               ) : null
               }
               <td>{gasto.titulo}</td>
-              <td className="text-red-500">-{gasto.valor}</td>
+              { gasto.status === "recebido" ? (<td className="text-black dark:text-white">+{gasto.valor}</td>) : <td className="text-red-500">-{gasto.valor}</td>}
             </tr>
           ))}
         </tbody>
@@ -77,4 +77,4 @@ const GastosTable = ({user}) => {
   );
 };
 
-export default GastosTable;
+export default MovimentacoesRecentes;

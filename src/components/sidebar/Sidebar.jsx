@@ -6,8 +6,7 @@ import { Wallet, ChevronsUpDown, ChevronUp, SquareTerminal, Settings, DollarSign
 import ThemeSwitcher from '@/components/theme/ThemeSwitcher'
 import { isUserLoggedIn } from '@/hooks/useAuth';
 import { useSidebar } from '@/hooks/useSidebar'
-import ModalCadastroPago from '../cadastro/ModalCadastro.Pago'
-import ModalCadastroRecebido from '../cadastro/ModalCadastro.Recebido'
+
 const Sidebar = () => {
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
     const [isFinanceiroOpen, setIsFinanceiroOpen] = useState(false);

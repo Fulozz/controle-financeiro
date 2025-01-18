@@ -5,7 +5,6 @@ import { useProtectedRoute } from '@/hooks/useAuth';
 import useUser from '@/hooks/useUser'
 import DashboardCard from '@/components/dashboard/DashboardCard';
 import moment from 'moment';
-import { Plus } from 'lucide-react';
 import BottomMenu from '@/components/cadastro/BottomMenu';
 import SidebarController from '@/components/sidebar/controller/SidebarController';
 import { useSidebar } from '@/hooks/useSidebar';

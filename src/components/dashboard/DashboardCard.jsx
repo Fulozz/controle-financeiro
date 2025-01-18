@@ -49,7 +49,7 @@ const DashboardCard = ({ user, mes }) => {
         </div>
         <div className="aspect-video rounded-xl bg-white shadow-lg dark:bg-[#18181A] flex flex-col items-center justify-center">
           <p className='text-base md:text-[1.4rem] '>Saldo</p>
-          <h2 className='text-[2.2rem] text-blue-500 font-bold'>{saldo ? (formatValue(saldo)): ('R$00,00')}</h2>
+          <h2 className='text-[2.2rem] text-green-500 font-bold'>{saldo ? (formatValue(saldo)): ('R$00,00')}</h2>
         </div>
       </div>
     </div>

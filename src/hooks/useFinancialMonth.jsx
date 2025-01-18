@@ -32,38 +32,34 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const useFinancialMonth = (userId, mesRef) => {
-    const [dataArr, setDataArr] = useState([]); // Armazena os dados em um array
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const token = localStorage.getItem('token');
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/finances/recent/${userId}/${mesRef}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                      }
-                });
-                const data = response.data;
-                const newDataArray = data.map((item) => ({
-                    id: item.id,
-                    data: item.data,
-                    status: item.status,
-                    descricao: item.descricao,
-                    valor: item.valor,
-                }));
-                setDataArr(newDataArray);
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
-        };
+  const [data, setData] = useState([]); // Stores fetched financial data
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const token = localStorage.getItem('token');
 
-        fetchData();
-    }, [userId, mesRef]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://portfolio-backend-zpig.onrender.com/api/v1/transaction/finances/recent/${userId}/${mesRef}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setData(response.data.data); // Access data from response structure
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    return { data: dataArr, loading, error };
+    fetchData();
+  }, [userId, mesRef]); // Re-fetch on userId or mesRef change
+
+  return { data, loading, error };
 };
 
 export default useFinancialMonth;

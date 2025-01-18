@@ -29,9 +29,10 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0'); // Add leading zero if needed
       data.mesRef = `${year}-${month}`;
-      setPostLoading(true)
+      setPostLoading(true);
       data.userID = user.id;
-      data.tipo = "recebido"
+      data.tipo = "recebido";
+      data.status = "recebido";
       // TODO: implementar reload de tela ao concluir e fornecer feedback ao usuário
       const response = await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/register`,data)
       if(!response.ok){

@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import {  Clock, Check, X } from "lucide-react";
+import {  Clock, Check, X, DollarSign } from "lucide-react";
 import  useFinancialMonth  from '@/hooks/useFinancialMonth';
 const GastosTable = ({user}) => {
   const userID = user.id
@@ -12,13 +12,9 @@ const GastosTable = ({user}) => {
   if (isLoading) {
     return <div>Carregando...</div>;
   }
-
-  if (error) {
-    return <div>Erro ao carregar dados: {error.message}</div>;
-  }
-
-
-  const limit = 10;
+    const limit = 10;
+    // Sort gastos by date in descending order (most recent first)
+    const sortedGastos = gastos.slice(0, limit).sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
     <div className="overflow-w-auto border-white border-2 rounded-lg p-2">
@@ -41,16 +37,17 @@ const GastosTable = ({user}) => {
           </tr>
         </thead>
         <tbody>
-          {gastos.map((gasto) => (
+          
+          {sortedGastos.map((gasto) => (
             <tr key={gasto.id}>
-              <td>{gasto.data}</td>
+              <td>{gasto.date}</td>
               {gasto.status === "pago" ? (
                 <td className="flex  items-center">
                   <Check  className="h-5 w-5 mr-2 text-green-500 " />
                   {gasto.status}
                 </td>
               ) : 
-              gasto.status === "aberto" ? (
+              gasto.status === "agendado" ? (
                 <td className="flex items-center">
                   <Clock className="h-5 w-5 mr-2 text-yellow-400" />
                   {gasto.status}
@@ -60,9 +57,14 @@ const GastosTable = ({user}) => {
                   <X className="h-5 w-5 mr-2 text-red-500" />
                   {gasto.status}
                 </td>
+              ) : gasto.status === "recebido" ? (
+                <td className="flex items-center">
+                  <DollarSign className="h-5 w-5 mr-2 text-green-500" />
+                  {gasto.status}
+                </td>
               ) : null
               }
-              <td>{gasto.descricao}</td>
+              <td>{gasto.titulo}</td>
               <td className="text-red-500">-{gasto.valor}</td>
             </tr>
           ))}

@@ -22,7 +22,8 @@ const Provider = ({ children }) => {
               reverseOrder={false}
               toastOptions={{ duration: 2000 }}
             />
-            <Sidebar isActive={isActive} setIsActive={setIsActive} />
+            <Sidebar />
+            <SidebarController />
             <GastosProvider>{children}</GastosProvider>
           </SidebarProvider>
         </AuthProvider>

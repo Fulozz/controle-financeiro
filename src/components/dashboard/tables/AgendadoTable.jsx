@@ -118,7 +118,7 @@ const AgendadoTable = () => {
             <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
               Data
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
+            <th className="px-6 hidden md:block py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
               parcela
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
@@ -137,10 +137,10 @@ const AgendadoTable = () => {
             <tr key={gasto.id}>
               <td>{gasto.data}</td>
               {gasto.status === "parcelado" ? (
-                <td>
+                <td className=" items-center">
                   {gasto.tipo} - {gasto.quantidadeParcelasAtual}/{gasto.quantidadeParcelasTotal}
                 </td>
-              ) : <td>{gasto.tipo} </td> }
+              ) : <td className=" items-center">{gasto.tipo} </td> }
               {gasto.status === "recorrente" ? (
                 <td className="flex  items-center">
                   {gasto.pago ? <Check  className="h-5 w-5 mr-2 text-green-500 " />: <Clock className="h-5 w-5 mr-2 text-yellow-400" /> }

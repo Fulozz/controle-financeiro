@@ -20,8 +20,8 @@ const page = () => {
     const dataAtual = new Date();
     const mesPorExtenso = moment(dataAtual).format('MMMM');
     const user = useUser();
-    const { isActive, setIsActive } = useSidebar();
 
+    const { isActive, setIsActive} = useSidebar()
     const { isLoading, isAuthenticated } = useProtectedRoute();
 
 
@@ -35,13 +35,8 @@ const page = () => {
       return null;
     }
 console.log(user)
-    let title = "Visão Geral das Contas"
 return (
     <div className={`block   ${isActive === false ? "px-0" : "pl-[270px] pt-2"}`} >
-      <div className="">
-      <SidebarController title={title} />
-
-      </div>
       <div className="max-w-2xl md:max-w-none mx-auto pt-2">
         <DashboardCard user={user} mes={mesPorExtenso}  />
       </div>

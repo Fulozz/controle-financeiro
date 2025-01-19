@@ -8,7 +8,6 @@ import { AuthProvider, useProtectedRoute } from "@/hooks/useAuth";
 import { useSidebar } from "@/hooks/useSidebar";
 import SidebarController from "@/components/sidebar/controller/SidebarController";
 import { SidebarProvider } from "@/hooks/useSidebar";
-import { GastosProvider } from "@/context/GastosContext";
 const Provider = ({ children }) => {
   useSidebar
 
@@ -25,11 +24,9 @@ const Provider = ({ children }) => {
             />
             <Sidebar />
             <SidebarController />
-            <GastosProvider>
               <div className={``}>
               {children}
               </div>
-            </GastosProvider>
           </SidebarProvider>
         </AuthProvider>
       </ThemeProvider>

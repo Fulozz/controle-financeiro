@@ -34,7 +34,6 @@ const page = () => {
       // Redirecionamento já é realizado no hook
       return null;
     }
-console.log(user)
 return (
     <div className={`block   ${isActive === false ? "px-0" : "pl-[270px] pt-2"}`} >
       <div className="max-w-2xl md:max-w-none mx-auto pt-2">

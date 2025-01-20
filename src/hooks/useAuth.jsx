@@ -73,7 +73,6 @@ const useProtectedRoute = () => {
 // const isAuthenticated = isUserLoggedIn()
 const isUserLoggedIn = () => {
   const { isAuthenticated } = useAuth();
-  console.log(isAuthenticated, "IsuserLoggedIn")
   return isAuthenticated;
 };
 

@@ -7,7 +7,6 @@ const MovimentacoesRecentes = ({user}) => {
   const mesRef = new Date().toISOString().slice(0, 7)
   
   const { data: gastos, isLoading, error } = useFinancialMonth(userID, mesRef);
-  console.log(gastos, 'useFinancialMonth')
 
   if (isLoading) {
     return <div>Carregando...</div>;

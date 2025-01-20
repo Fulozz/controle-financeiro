@@ -20,7 +20,6 @@ const page = () => {
       }
 
       const response = await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/register`, data);
-      console.log('Signup successful:', response.data);
       toast.success('Conta criada com sucesso!');
       // Redirecionar para a página de login ou outra página relevante após o cadastro bem-sucedido
       route.push('/login');

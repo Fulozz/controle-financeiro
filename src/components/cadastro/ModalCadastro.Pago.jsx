@@ -24,7 +24,6 @@ const ModalCadastroPago = ({ isOpen, setIsOpen }) => {
   // TODO: Implementar a função onSubmit
 
   const onSubmit = async (data) => {
-    console.log(data)
     try{
       const date = new Date(data.date);
       const year = date.getFullYear();

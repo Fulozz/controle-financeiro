@@ -19,7 +19,6 @@ const DashboardCard = ({ user, mes }) => {
   if (!data) {
     return <div>Nenhum dado encontrado.</div>;
   }
- console.log(data.dados)
   const totalRecebido = data.dados.totalRecebido;
   const totalPago = data.dados.totalPago
   const saldo = data.dados.saldo;

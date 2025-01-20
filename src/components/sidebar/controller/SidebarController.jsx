@@ -17,7 +17,7 @@ const SidebarController = () => {
                 <div className="bg-[#A1A1AA] w-[1px] shrink-0  mr-2 h-4"></div>
                 <h1 className='text-md font-semibold text-[#A1A1AA] '>Fulozz inc</h1>
             </div>
-            <div>
+            <div className='pr-2'>
               <ThemeSwitcher />
             </div>
           </div>

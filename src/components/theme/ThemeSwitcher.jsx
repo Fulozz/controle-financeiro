@@ -15,7 +15,7 @@ export default function ThemeSwitcher  () {
     <div>
       <button
         className={cn(
-          "w-fit p-2 rounded-md hover:scale-110 active:scale-100 duration-200 bg-transparent"
+          "w-fit p-2 rounded-md  active:scale-100 duration-200 bg-transparent"
         )}
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       >

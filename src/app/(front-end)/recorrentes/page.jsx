@@ -1,11 +1,15 @@
 "use client"
 import React from 'react'
-import SidebarController from '@/components/sidebar/controller/SidebarController';
+
+import DataTable from '@/common/DataTable';
+import { useSidebar } from '@/hooks/useSidebar';
 const page = () => {
-  const isActive = true
+  const {isActive} = useSidebar()
   return (
-    <div className={`block   ${isActive === false ? "px-0" : "pl-[270px] pt-2"}`}>
-      teste
+    <div className={`  justify-center ${isActive === false ? "px-0" : "pl-[270px] pt-2"}`}>
+      <div className="px-5">
+        <DataTable />
+      </div>    
     </div>
   )
 }

@@ -8,6 +8,7 @@ import PageHeader from '@/common/PageHeader';
 import Modal from '@/common/Modal';
 const page = () => {
   const [ isOpen, setIsOpen ] = useState(false)
+  const [search, setSearch] = useState('')
   const {isActive} = useSidebar()
   const linkTitle = "Nova recorrente";
   const heading = "Gastos recorrentes"
@@ -17,9 +18,9 @@ const page = () => {
       <div className="px-5">
         <div className="py-4">
           <PageHeader linkTitle={linkTitle} heading={heading} isOpen={isOpen} setIsOpen={setIsOpen}/>
-          <TableActions title="Gastos recorrentes"  />        
+          <TableActions title="Gastos recorrentes" setSearch={setSearch} search={search}/>        
         </div>
-        <DataTable />
+        <DataTable setSearch={setSearch} search={search} />
       </div>    
     </div>
     { isOpen && (<Modal isOpen={isOpen} setIsOpen={setIsOpen}/>)}

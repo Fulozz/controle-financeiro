@@ -3,7 +3,7 @@ import React from 'react';
 const DataTable = ({ data = [
     {
         id: 1,
-        dueDate: '2023-10-01',
+        dueDate: '01',
         status: 'Paid',
         description: 'Rent payment',
         amount: '$1000',
@@ -12,7 +12,7 @@ const DataTable = ({ data = [
     },
     {
         id: 2,
-        dueDate: '2023-10-05',
+        dueDate: '05',
         status: 'Pending',
         description: 'Car insurance',
         amount: '$200',
@@ -21,7 +21,7 @@ const DataTable = ({ data = [
     },
     {
         id: 3,
-        dueDate: '2023-10-10',
+        dueDate: '10',
         status: 'Overdue',
         description: 'Netflix subscription',
         amount: '$15',

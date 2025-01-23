@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-const Modal = () => {
+const Modal = ({isOpen, setIsOpen}) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
@@ -9,7 +9,15 @@ const Modal = () => {
     };
 
     return (
-        <div className="bg-black bg-opacity-50 fixed inset-0 z-50 flex justify-center items-center">
+        <>
+        
+        {isOpen === true && (
+            <div
+            onClick={()=> setIsOpen(false)}
+            className="fixed inset-0 z-50 bg-black/50" // Adjust opacity as needed
+            />
+        )}
+        <div className="fixed inset-0 z-50 flex justify-center items-center">
             <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
                 <h2 className="text-2xl text-white dark:text-black font-bold mb-4">Registrar Gasto Recorrente</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -72,17 +80,24 @@ const Modal = () => {
                         </select>
                         {errors.categoria && <span className="text-red-500 text-sm">Este campo é obrigatório</span>}
                     </div>
-                    <div className="flex items-center justify-between">
-                        <button
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            type="submit"
+                    <div className="flex justify-between ml-2">
+                        <div
+                        onClick={() => setIsOpen(false)}
+                        className="text-white bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded"
                         >
-                            Registrar
+                        Sair
+                        </div>
+                        <button
+                        type="submit"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded"
+                        >
+                        Enviar
                         </button>
                     </div>
                 </form>
             </div>
         </div>
+        </>
     );
 };
 

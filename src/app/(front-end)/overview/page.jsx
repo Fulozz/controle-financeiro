@@ -10,6 +10,7 @@ import SidebarController from '@/components/sidebar/controller/SidebarController
 import { useSidebar } from '@/hooks/useSidebar';
 import DashboardTables from '@/components/dashboard/DashboardTables';
 
+// TODO: arrumar um jeito de não recarregar a pagina toda vez q tem uma alteração
 const page = () => {
   moment.updateLocale('pt-br', {
     months: [
@@ -22,6 +23,7 @@ const page = () => {
     const user = useUser();
 
     const { isActive, setIsActive} = useSidebar()
+    
     const { isLoading, isAuthenticated } = useProtectedRoute();
 
 

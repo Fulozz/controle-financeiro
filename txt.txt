@@ -5,3 +5,6 @@ Quantidade de parcelas automatico - Poder registrar como pago, pendente ou cance
 Caso cancelado excluir logicamente do registro.
 
 Seletor da data de vencimento na area do perfil
+
+
+Leitor de código de barras para pesquisa de notas fiscais (tentar fazer a minha própria lib)

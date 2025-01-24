@@ -1,6 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
+// TODO: Implementar a função onSubmit
+// TODO: Usuario vai ter um local para registrar quais categorias ele quer, com um limite de 5 categorias para usuario padrão, 
+//       e 20 para usuario premium (implementar sistema de diferenciação de usuario)
 const Modal = ({isOpen, setIsOpen}) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -26,7 +29,7 @@ const Modal = ({isOpen, setIsOpen}) => {
                             Nome
                         </label>
                         <input
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
                             id="nome"
                             type="text"
                             placeholder="Nome do registro"
@@ -43,6 +46,7 @@ const Modal = ({isOpen, setIsOpen}) => {
                             id="diaVencimento"
                             {...register('diaVencimento', { required: true })}
                         >
+                            <option value="1">1</option>
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
@@ -61,6 +65,7 @@ const Modal = ({isOpen, setIsOpen}) => {
                             id="valor"
                             type="number"
                             placeholder="Valor"
+                            step="any"
                             {...register('valor', { required: true })}
                         />
                         {errors.valor && <span className="text-red-500 text-sm">Este campo é obrigatório</span>}
@@ -74,7 +79,9 @@ const Modal = ({isOpen, setIsOpen}) => {
                             id="categoria"
                             {...register('categoria', { required: true })}
                         >
+
                             <option value="streaming">Streaming</option>
+                            <option value="casa">Carro</option>
                             <option value="casa">Casa (Energia, Água)</option>
                             <option value="outros">Outros</option>
                         </select>

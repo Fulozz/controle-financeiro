@@ -50,6 +50,7 @@ const useFinancialMonth = (userId, mesRef) => {
                 const newDataArray = data.map((item) => ({
                     id: item.id,
                     data: item.date,
+                    titulo: item.titulo,
                     status: item.status,
                     descricao: item.descricao,
                     valor: item.valor,

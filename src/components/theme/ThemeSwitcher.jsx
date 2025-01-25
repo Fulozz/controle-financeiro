@@ -19,12 +19,12 @@ export default function ThemeSwitcher  () {
         )}
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       >
-        {" "}
+        
         {theme === "light" ? (
           <Moon className="text-black h-5 w-5" />
         ) : (
           <Sun className="text-white h-5 w-5" />
-        )}{" "}
+        )}
       </button>
     </div>
   );

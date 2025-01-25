@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import useUser from "@/hooks/useUser";
 import toast from 'react-hot-toast'
 import axios from "axios";
-const ModalCadastroPago = ({ isOpen, setIsOpen }) => {
+const ModalCadastroPago = ({ isOpen, setIsOpen, forceUpdate, setForceUpdate }) => {
   const { isLoading, isAuthenticated } = useProtectedRoute();
   const [postLoading, setPostLoading]= useState(false);
   const user = useUser();
@@ -36,7 +36,7 @@ const ModalCadastroPago = ({ isOpen, setIsOpen }) => {
       toast.success("Pagamento cadastrado com sucesso")
       setPostLoading(false)
       setIsOpen(false)
-      window.location.reload()
+      setForceUpdate(true)
     }catch (error){
       console.log(error)
       toast.error("Erro ao cadastrar pagamento")

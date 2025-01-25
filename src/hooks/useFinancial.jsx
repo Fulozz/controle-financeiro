@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Hook para buscar dados financeiros do usuário
-const useFinancial = (userID, mesRef) => {
+const useFinancial = (userID, mesRef, forceUpdate = false) => {
+
   const token = localStorage.getItem('token');
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -30,12 +31,12 @@ const useFinancial = (userID, mesRef) => {
       }
     };
 
-    if (token && userID && mesRef) {
+    if (token && userID && mesRef || forceUpdate) {
       fetchData();
     }
-  }, [token, userID, mesRef]);
+  }, [token, userID, mesRef, forceUpdate]);
 
-  return { data, isLoading, error };
+  return { data, isLoading, error, forceUpdate};
 };
 
 export default useFinancial;

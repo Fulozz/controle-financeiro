@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import useUser from "@/hooks/useUser";
 import toast from "react-hot-toast";
 import axios from "axios";
-const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
+const ModalCadastroRecebido = ({ isOpen, setIsOpen, forceUpdate, setForceUpdate }) => {
   const { isLoading, isAuthenticated } = useProtectedRoute();
   const [postLoading, setPostLoading]= useState(false);
   const token = localStorage.getItem('token');
@@ -36,7 +36,7 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
       toast.success("Recebido cadastrado com sucesso")
       setPostLoading(false)
       setIsOpen(false)
-      window.location.reload()
+      setForceUpdate(true)
     }catch (error){
       console.log(error)
       toast.error("Erro ao cadastrar recebido")

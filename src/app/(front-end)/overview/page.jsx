@@ -1,14 +1,14 @@
 "use client"
-
-import React from 'react';
+ 
+import React, { useState } from 'react';
 import { useProtectedRoute } from '@/hooks/useAuth';
 import useUser from '@/hooks/useUser'
 import DashboardCard from '@/components/dashboard/DashboardCard';
 import moment from 'moment';
 import BottomMenu from '@/components/cadastro/BottomMenu';
-import SidebarController from '@/components/sidebar/controller/SidebarController';
 import { useSidebar } from '@/hooks/useSidebar';
 import DashboardTables from '@/components/dashboard/DashboardTables';
+import useFinancial from '@/hooks/useFinancial';
 
 // TODO: arrumar um jeito de não recarregar a pagina toda vez q tem uma alteração
 const page = () => {
@@ -23,7 +23,13 @@ const page = () => {
     const user = useUser();
 
     const { isActive, setIsActive} = useSidebar()
-    
+    const [forceUpdate, setForceUpdate] = useState(false);
+
+    const userID = user.id
+    const mesRef = new Date().toISOString().slice(0, 7)
+    const { data, isLoading: externalIsLoading, error, setForceUpdate: externalSetForceUpdate } = useFinancial(userID, mesRef, forceUpdate);
+
+
     const { isLoading, isAuthenticated } = useProtectedRoute();
 
 
@@ -39,7 +45,7 @@ const page = () => {
 return (
     <div className={`block   ${isActive === false ? "px-0" : "pl-[270px] pt-2"}`} >
       <div className="max-w-2xl md:max-w-none mx-auto pt-2">
-        <DashboardCard user={user} mes={mesPorExtenso}  />
+        <DashboardCard user={user} mes={mesPorExtenso} data={data} mesRef={mesRef} isLoading={externalIsLoading} error={error} />
       </div>
 
       <div className="max-w-2xl md:max-w-none mx-auto pt-2">
@@ -47,7 +53,7 @@ return (
       </div>
       {/* TODO: GASTOS RECENTES E OVERVIEW DOS MESES https://ui.shadcn.com/examples/dashboard */}
       <div className="flex  dark:bg-[#18181A] justify-center items-center z-40 fixed right-6 bottom-6 h-[50px] w-[50px] rounded-lg  border border-gray-400 shadow-lg">
-        <BottomMenu user={user}/>
+        <BottomMenu user={user} forceUpdate={forceUpdate} setForceUpdate={setForceUpdate}/>
       </div>
     </div>
   );

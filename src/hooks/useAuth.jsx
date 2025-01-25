@@ -1,3 +1,33 @@
+
+/**
+ * Context to share the authentication state
+ * @type {React.Context}
+ */
+
+/**
+ * Provider to wrap the application and provide the authentication context
+ * @param {Object} props - Component properties
+ * @param {React.ReactNode} props.children - Child components to be wrapped by the provider
+ * @returns {JSX.Element} - AuthProvider component
+ */
+
+/**
+ * Hook to access the authentication context
+ * @returns {{ isAuthenticated: boolean, isLoading: boolean }} - Authentication and loading state
+ * @throws {Error} - If the hook is used outside of an AuthProvider
+ */
+
+/**
+ * Hook to check if the user is logged in and redirect if not
+ * @returns {{ isLoading: boolean, isAuthenticated: boolean }} - Authentication and loading state
+ */
+
+/**
+ * Hook to check if the user is logged in without redirecting
+ * @returns {boolean} - Authentication state
+ */
+
+
 "use client";
 import { useState, useEffect, createContext, useContext } from 'react';
 import { useRouter } from 'next/navigation';

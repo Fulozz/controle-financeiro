@@ -1,14 +1,46 @@
+/**
+ * Custom hook to fetch financial data for a specific user and month.
+ *
+ * @param {string} userId - The ID of the user.
+ * @param {string} mesRef - The reference month in the format 'YYYY-MM'.
+ * @returns {Object} An object containing the following properties:
+ * - {Object|null} data - The fetched financial data or null if not yet fetched.
+ * - {boolean} loading - A boolean indicating if the data is currently being fetched.
+ * - {Object|null} error - An error object if an error occurred during fetching, or null if no error.
+ *
+ * @example
+ * const { data, loading, error } = useFinancial( 'Im an token','user123', '2023-10', forceUpdate = true);
+ *
+ * if (loading) {
+ *   return <div>Loading...</div>;
+ * }
+ *
+ * if (error) {
+ *   return <div>Error: {error.message}</div>;
+ * }
+ *
+ * return (
+ *   <div>
+ *     <h1>Financial Data for October 2023</h1>
+ *     <pre>{JSON.stringify(data, null, 2)}</pre>
+ *   </div>
+ * );
+ */
+
+
+
 "use client"
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import useLocalStorage from './useLocalStorage';
 
 // Hook para buscar dados financeiros do usuário
-const useFinancial = (userID, mesRef, forceUpdate = false) => {
+const useFinancial = ( userID, mesRef, forceUpdate = false) => {
 
-  const token = localStorage.getItem('token');
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const token  = useLocalStorage();
 
   useEffect(() => {
     const fetchData = async () => {

@@ -11,7 +11,9 @@ const MovimentacoesRecentes = ({user}) => {
   if (isLoading) {
     return <div>Carregando...</div>;
   }
+  console.log(error)
     const limit = 10;
+    console.log(gastos)
     // Sort gastos by date in descending order (most recent first)
     const sortedGastos = gastos.slice(0, limit).sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -39,7 +41,7 @@ const MovimentacoesRecentes = ({user}) => {
           
           {sortedGastos.map((gasto) => (
             <tr key={gasto.id}>
-              <td>{gasto.date}</td>
+              <td>{gasto.data}</td>
               {gasto.status === "pago" ? (
                 <td className="flex  items-center">
                   <Dot size={32} strokeWidth={3} className=" mr-2 text-green-500 " />

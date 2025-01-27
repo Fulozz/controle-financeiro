@@ -1,47 +1,44 @@
 import React from 'react';
 
-const DataTable = ({ data = [
+const DataTable = ({
+  data = [
     {
-        id: 1,
-        dueDate: '01',
-        status: 'Paid',
-        description: 'Rent payment',
-        amount: '$1000',
-        category: 'House',
-        attachment: 'receipt.pdf'
+      id: 1,
+      dueDate: '01',
+      description: 'Rent payment',
+      amount: '$1000',
+      category: 'House',
     },
     {
-        id: 2,
-        dueDate: '05',
-        status: 'Pending',
-        description: 'Car insurance',
-        amount: '$200',
-        category: 'Car',
-        attachment: 'insurance.pdf'
+      id: 2,
+      dueDate: '05',
+      description: 'Car insurance',
+      amount: '$200',
+      category: 'Car',
     },
     {
-        id: 3,
-        dueDate: '10',
-        status: 'Overdue',
-        description: 'Netflix subscription',
-        amount: '$15',
-        category: 'Streaming',
-        attachment: 'invoice.pdf'
-    }
-], columns = [
+      id: 3,
+      dueDate: '10',
+      description: 'Netflix subscription',
+      amount: '$15',
+      category: 'Streaming',
+    },
+  ],
+  columns = [
     { id: 'dueDate', label: 'Due Date' },
-    { id: 'status', label: 'Status' },
     { id: 'description', label: 'Description' },
     { id: 'amount', label: 'Amount' },
     { id: 'category', label: 'Category' },
-    { id: 'attachment', label: 'Attachment' }
-], resourceTitle = "Gastos recorrentes", search}) => {
-  // Filter the data based on the search term
+
+  ],
+  resourceTitle = "Gastos recorrentes",
+  search,
+}) => {
+  // Filter the data based on the search term (same logic as before)
   const filteredData = data.filter((item) => {
     const searchTermLower = search.toLowerCase();
     let found = false;
 
-    // Iterate through relevant columns for filtering
     columns.forEach((column) => {
       if (typeof item[column.id] === 'string') {
         found = found || item[column.id].toLowerCase().includes(searchTermLower);
@@ -52,24 +49,28 @@ const DataTable = ({ data = [
   });
 
   return (
-    <div className="overflow-x-auto shadow-lg bg-white dark:bg-black border-white border-2 rounded-lg p-2">
+    <div className="overflow-x-auto shadow-lg bg-white dark:bg-black border-white border-2 rounded-lg p-2 mx-4">
       <table className="min-w-full divide-y divide-gray-700 dark:divide-gray-200 items-center">
         <caption className="">{resourceTitle}</caption>
         <thead>
           <tr className="sticky top-0">
-            <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">Vencimento</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">Status</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">Descrição</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">Valor</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">Categoria</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">Anexo</th>
+            {columns.map((column) => (
+              <th
+                key={column.id}
+                className="px-2 py-1 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider"
+              >
+                {column.label}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {filteredData.map((row) => (
-            <tr key={row.id}>
+            <tr key={row.id} className="text-gray-700 dark:text-gray-400">
               {columns.map((column) => (
-                <td key={column.id}>{row[column.id]}</td>
+                <td key={column.id} className="px-2 py-1">
+                  {row[column.id]}
+                </td>
               ))}
             </tr>
           ))}

@@ -36,7 +36,7 @@ const page = () => {
 
     if(isLoading | !user) {
       return (
-        <div className='loading h-full w-full bg-black'>Carregando...</div>
+        <div className='loading h-auto w-full '>Carregando...</div>
       )
     }
     if(!isAuthenticated) {
@@ -53,7 +53,7 @@ return (
         <DashboardTables user={user} mesRef={mesPorExtenso} data={tableData} isLoading={tableIsLoading} error={tableError} />
       </div>
       {/* TODO: GASTOS RECENTES E OVERVIEW DOS MESES https://ui.shadcn.com/examples/dashboard */}
-      <div className="flex  dark:bg-[#18181A] justify-center items-center z-40 fixed right-8 bottom-8 h-[50px] w-[50px] rounded-lg  border border-gray-400 shadow-lg">
+      <div className="flex  dark:bg-[#18181A] justify-center items-center z-40 fixed right-6 bottom-[90px] h-[50px] w-[50px] rounded-lg  border border-gray-400 shadow-lg">
         <BottomMenu user={user} forceUpdate={forceUpdate} setForceUpdate={setForceUpdate}/>
       </div>
     </div>

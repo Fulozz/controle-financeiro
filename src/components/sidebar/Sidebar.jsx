@@ -22,7 +22,7 @@ const Sidebar = () => {
 
         {
             isAuthenticated && (
-                <div className="hidden md:block -translate-x-full ">
+                <div className={`hidden translate-x-0 md:block ${isActive && "-translate-x-full"}`} >
                     <nav className={`fixed inset-y-0 left-0  bg-[#FAFAFA] dark:bg-[#18181B] ${isActive ? 'w-64 translate-x-0 transition-all duration-300 ease-in-out' : '-translate-x-full transition-all duration-300 ease-in-out'}`}>
                     <div className="flex text-white items-center justify-start p-4 hover:bg-[#F4F4F5] dark:hover:bg-[#27272A] rounded-lg gap-2 ">
                         <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-400">

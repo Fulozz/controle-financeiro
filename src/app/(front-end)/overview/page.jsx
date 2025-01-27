@@ -9,6 +9,7 @@ import BottomMenu from '@/components/cadastro/BottomMenu';
 import { useSidebar } from '@/hooks/useSidebar';
 import DashboardTables from '@/components/dashboard/DashboardTables';
 import useFinancial from '@/hooks/useFinancial';
+import useFinancialMonth from '@/hooks/useFinancialMonth'
 
 // TODO: arrumar um jeito de não recarregar a pagina toda vez q tem uma alteração
 const page = () => {
@@ -27,8 +28,8 @@ const page = () => {
 
     const userID = user.id
     const mesRef = new Date().toISOString().slice(0, 7)
-    const { data, isLoading: externalIsLoading, error, setForceUpdate: externalSetForceUpdate } = useFinancial(userID, mesRef, forceUpdate);
-
+    const { data, isLoading: externalIsLoading, error, forceUpdate: externalForceUpdate } = useFinancial(userID, mesRef, forceUpdate);
+    const { data: tableData, isLoading: tableIsLoading, error: tableError, forceUpdate: tableForceUpdate } = useFinancialMonth(userID, mesRef, forceUpdate);
 
     const { isLoading, isAuthenticated } = useProtectedRoute();
 
@@ -49,11 +50,11 @@ return (
       </div>
 
       <div className="max-w-2xl md:max-w-none mx-auto pt-2">
-        <DashboardTables user={user} mesRef={mesPorExtenso} />
+        <DashboardTables user={user} mesRef={mesPorExtenso} data={tableData} isLoading={tableIsLoading} error={tableError} />
       </div>
       {/* TODO: GASTOS RECENTES E OVERVIEW DOS MESES https://ui.shadcn.com/examples/dashboard */}
-      <div className="flex  dark:bg-[#18181A] justify-center items-center z-40 fixed right-6 bottom-6 h-[50px] w-[50px] rounded-lg  border border-gray-400 shadow-lg">
-        <BottomMenu user={user} forceUpdate={forceUpdate} setForceUpdate={externalSetForceUpdate}/>
+      <div className="flex  dark:bg-[#18181A] justify-center items-center z-40 fixed right-8 bottom-8 h-[50px] w-[50px] rounded-lg  border border-gray-400 shadow-lg">
+        <BottomMenu user={user} forceUpdate={forceUpdate} setForceUpdate={setForceUpdate}/>
       </div>
     </div>
   );

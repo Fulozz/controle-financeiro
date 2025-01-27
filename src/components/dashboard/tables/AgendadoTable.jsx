@@ -118,10 +118,10 @@ const AgendadoTable = () => {
             <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
               Data
             </th>
-            <th className="px-6 hidden md:block py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
+            <th className="px-6 hidden py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
               parcela
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
+            <th className="px-6 hidden py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
               Status
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
@@ -136,29 +136,29 @@ const AgendadoTable = () => {
           {gastos.slice(0, limit).map((gasto) => (
             <tr key={gasto.id}>
               <td>{gasto.data}</td>
-              {gasto.status === "parcelado" ? (
-                <td className=" items-center">
-                  {gasto.tipo} - {gasto.quantidadeParcelasAtual}/{gasto.quantidadeParcelasTotal}
-                </td>
-              ) : <td className="items-center">{gasto.tipo} </td> }
-              {gasto.status === "recorrente" ? (
-                <td className="flex  items-center">
-                  {gasto.pago ? <Dot size={32} strokeWidth={3} className=" mr-2 text-green-500 " />: <Dot size={32} strokeWidth={3} className=" mr-2 text-yellow-500 " /> }
-                  {gasto.status}
-                </td>
-              ) : 
-              gasto.status === "parcelado" ? (
-                <td className="flex items-center">
-                  {gasto.pago ? <Dot size={32} strokeWidth={3} className=" mr-2 text-green-500 " />: <Dot size={32} strokeWidth={3} className=" mr-2 text-yellow-500 " /> }
-                  {gasto.status}
-                </td>
-              ) : gasto.status === "cancelado" ? (
-                <td className="flex items-center">
-                  <Dot size={32} strokeWidth={3} className=" mr-2 text-red-500 "  />
-                  {gasto.status}
-                </td>
-              ) : null
-              }
+                  {gasto.status === "parcelado" ? (
+                  <td className=" items-center hidden">
+                    {gasto.tipo} - {gasto.quantidadeParcelasAtual}/{gasto.quantidadeParcelasTotal}
+                  </td>
+                ) : <td className="items-center hidden">{gasto.tipo} </td> }
+                {gasto.status === "recorrente" ? (
+                  <td className="md:flex  items-center hidden">
+                    {gasto.pago ? <Dot size={32} strokeWidth={3} className=" mr-2 text-green-500 " />: <Dot size={32} strokeWidth={3} className=" mr-2 text-yellow-500 " /> }
+                    {gasto.status}
+                  </td>
+                ) : 
+                gasto.status === "parcelado" ? (
+                  <td className="md:flex items-center hidden">
+                    {gasto.pago ? <Dot size={32} strokeWidth={3} className=" mr-2 text-green-500 " />: <Dot size={32} strokeWidth={3} className=" mr-2 text-yellow-500 " /> }
+                    {gasto.status}
+                  </td>
+                ) : gasto.status === "cancelado" ? (
+                  <td className="md:flex items-center hidden">
+                    <Dot size={32} strokeWidth={3} className=" mr-2 text-red-500 "  />
+                    {gasto.status}
+                  </td>
+                ) : null
+                }
               <td>{gasto.descricao}</td>
               <td className="text-red-500">-{gasto.valor}</td>
             </tr>

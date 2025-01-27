@@ -11,7 +11,7 @@ const BottomMenu = ({ user, forceUpdate, setForceUpdate }) => {
       {
         user && user.name && (
           <>
-          <button className='cursor-pointer p-4 text-base'><Plus className='h-[30px] w-[40px]'/></button>
+          <button className='cursor-pointer  p-4 text-base'><Plus className='h-[40px] w-[40px]'/></button>
           <div className="bg-white dark:bg-[#18181A] shadow-lg bottom-[55px] right-[15px] hidden group-hover:block absolute rounded-lg min-w-[200px] z-10 border border-gray-400">
             <div onClick={()=> setIsOpenRecebido(true)} className='p-4 block hover:bg-[#f1f1f1]  dark:hover:bg-[#27272A] cursor-pointer'>Recebido</div>
             <div onClick={()=> setIsOpenPago(true)} className='p-4 block hover:bg-[#f1f1f1] dark:hover:bg-[#27272A] cursor-pointer'>Pago</div>

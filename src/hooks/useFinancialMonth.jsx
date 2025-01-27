@@ -28,15 +28,16 @@
  */
 
 
-
+"use client"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import useLocalStorage from '@/hooks/useLocalStorage'
 
-const useFinancialMonth = (userId, mesRef) => {
+const useFinancialMonth = (userId, mesRef, forceUpdate = false) => {
     const [dataArr, setDataArr] = useState([]); // Armazena os dados em um array
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const token = localStorage.getItem('token');
+    const token = useLocalStorage()
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -54,6 +55,7 @@ const useFinancialMonth = (userId, mesRef) => {
                     status: item.status,
                     descricao: item.descricao,
                     valor: item.valor,
+                    createdAt: item.createdAt
                 }));
                 setDataArr(newDataArray);
             } catch (err) {
@@ -63,12 +65,12 @@ const useFinancialMonth = (userId, mesRef) => {
             }
         };
 
-        if(token && userId && mesRef) {
+        if(token && userId && mesRef || forceUpdate) {
             fetchData();
         }
-    }, [userId, mesRef]);
+    }, [forceUpdate, userId, mesRef]);
 
-    return { data: dataArr, loading, error };
+    return { data: dataArr, loading, error, forceUpdate };
 
   };
 

@@ -8,6 +8,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import { AuthProvider, useProtectedRoute } from "@/hooks/useAuth";
 import { useSidebar } from "@/hooks/useSidebar";
 import SidebarController from "@/components/sidebar/controller/SidebarController";
+import BottomBar from '@/components/bottombar/BottomBar'
 import { SidebarProvider } from "@/hooks/useSidebar";
 const Provider = ({ children }) => {
   useSidebar
@@ -25,9 +26,10 @@ const Provider = ({ children }) => {
             />
             <Sidebar />
             <SidebarController />
-              <div className={``}>
-              {children}
+              <div className="flex pb-[120px] md:block md:pb-0" >
+                {children}
               </div>
+              <BottomBar />
           </SidebarProvider>
         </AuthProvider>
       </ThemeProvider>

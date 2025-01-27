@@ -114,6 +114,12 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen, forceUpdate, setForceUpdate 
                 )}
               </div>
               <div className="flex justify-between ml-2">
+                <div
+                  onClick={() => setIsOpen(false)}
+                  className="text-white bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded"
+                >
+                  Sair
+                </div>
                 <button
                   type="submit"
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded"

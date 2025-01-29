@@ -24,7 +24,7 @@ import { useState, useEffect } from 'react'
 const useUser = () => {
     
     const [user, setUser] = useState({name: '', email: '', id: ''})
-
+    const api = process.env.NEXT_PUBLIC_API_URL
 
     useEffect(()=> {
         const fetchUser = async () => {
@@ -33,7 +33,7 @@ const useUser = () => {
                 return null;
             }
             if(token){
-                const response = await fetch(`https://portfolio-backend-zpig.onrender.com/api/v1/profile`, {
+                const response = await fetch(`${api}/api/v1/profile`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

@@ -44,7 +44,7 @@ const page = () => {
       return null;
     }
 return (
-    <div className={`block   ${isActive === false ? "px-0" : "pl-[270px] pt-2"}`} >
+    <div className={`block  pl-0 md:pl-[270px]`} >
       <div className="max-w-2xl md:max-w-none mx-auto pt-2">
         <DashboardCard user={user} mes={mesPorExtenso} data={data} mesRef={mesRef} isLoading={externalIsLoading} error={error} />
       </div>

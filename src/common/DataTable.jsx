@@ -3,10 +3,10 @@ import React from 'react';
 const DataTable = ({
   data,
   columns = [
-    { id: 'dueDate', label: 'Due Date' },
-    { id: 'description', label: 'Description' },
-    { id: 'amount', label: 'Amount' },
-    { id: 'category', label: 'Category' },
+    { id: 'diaVencimento', label: 'Dia de Vencimento' },
+    { id: 'titulo', label: 'Titulo' },
+    { id: 'valor', label: 'Valor' },
+    { id: 'categoria', label: 'Categoria' },
 
   ],
   resourceTitle = "Gastos recorrentes",
@@ -18,14 +18,13 @@ const DataTable = ({
     let found = false;
 
     columns.forEach((column) => {
+      console.log(column)
       if (typeof item[column.id] === 'string') {
         found = found || item[column.id].toLowerCase().includes(searchTermLower);
       }
     });
-
-    return found;
+        return found;
   });
-
   return (
     <div className="overflow-x-auto shadow-lg bg-white dark:bg-black border-white border-2 rounded-lg p-2 mx-4">
       <table className="min-w-full divide-y divide-gray-700 dark:divide-gray-200 items-center">
@@ -44,6 +43,7 @@ const DataTable = ({
         </thead>
         <tbody>
           {filteredData.map((row) => (
+            console.log(row),
             <tr key={row.id} className="text-gray-700 dark:text-gray-400">
               {columns.map((column) => (
                 <td key={column.id} className="px-2 py-1">

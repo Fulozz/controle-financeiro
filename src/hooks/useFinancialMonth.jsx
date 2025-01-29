@@ -38,10 +38,11 @@ const useFinancialMonth = (userId, mesRef, forceUpdate = false) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const token = useLocalStorage()
+    const api = process.env.NEXT_PUBLIC_API_URL
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/finances/recent/${userId}/${mesRef}`, {
+                const response = await axios.get(`${api}/api/v1/transaction/finances/recent/${userId}/${mesRef}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                       }

@@ -7,7 +7,7 @@ import { ThemeProvider } from "next-themes";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { AuthProvider, useProtectedRoute } from "@/hooks/useAuth";
 import { useSidebar } from "@/hooks/useSidebar";
-import SidebarController from "@/components/sidebar/controller/SidebarController";
+
 import BottomBar from '@/components/bottombar/BottomBar'
 import { SidebarProvider } from "@/hooks/useSidebar";
 const Provider = ({ children }) => {
@@ -24,8 +24,7 @@ const Provider = ({ children }) => {
               reverseOrder={false}
               toastOptions={{ duration: 2000 }}
             />
-            <Sidebar />
-            <SidebarController />
+              <Sidebar />
               <div className="flex pb-[120px] md:block md:pb-0" >
                 {children}
               </div>

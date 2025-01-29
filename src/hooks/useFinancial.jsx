@@ -41,9 +41,7 @@ const useFinancial = ( userID, mesRef, forceUpdate = false) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const token  = useLocalStorage();
-  const api = process.env.API_URL
-  
-  console.log(api)
+  const api = process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +50,7 @@ const useFinancial = ( userID, mesRef, forceUpdate = false) => {
 
       try {
         // Envia uma requisição para o backend para pegar os dados financeiros
-        const response = await axios.get(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/finances/${userID}/${mesRef}`, {
+        const response = await axios.get(`${api}/api/v1/transaction/finances/${userID}/${mesRef}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

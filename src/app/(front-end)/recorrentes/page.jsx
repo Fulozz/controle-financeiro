@@ -5,7 +5,7 @@ import DataTable from '@/common/DataTable';
 import { useSidebar } from '@/hooks/useSidebar';
 import TableActions from '@/common/TableActions';
 import PageHeader from '@/common/PageHeader';
-import Modal from '@/common/Modal';
+import ModalRecorrentes from '@/components/Modal/ModalRecorrentes';
 import useRecurring from '@/hooks/useRecurring';
 import useUser from '@/hooks/useUser';
 const page = () => {
@@ -24,7 +24,7 @@ const page = () => {
   const heading = "Gastos recorrentes"
   return (
     <>
-    <div className={`  justify-center ${isActive === false ? "px-0" : "pl-[270px] pt-2"}`}>
+    <div className={`  justify-center pl-0 md:pl-[270px]`}>
       <div className="">
         <div className="py-4">
           <PageHeader linkTitle={linkTitle} heading={heading} isOpen={isOpen} setIsOpen={setIsOpen}/>
@@ -33,7 +33,7 @@ const page = () => {
         <DataTable setSearch={setSearch} search={search} data={data} />
       </div>    
     </div>
-    { isOpen && (<Modal isOpen={isOpen} setIsOpen={setIsOpen}/>)}
+    { isOpen && (<ModalRecorrentes isOpen={isOpen} setIsOpen={setIsOpen} url={"/api/v1/transaction/register/recurring"}/>)}
     </>
   )
 }

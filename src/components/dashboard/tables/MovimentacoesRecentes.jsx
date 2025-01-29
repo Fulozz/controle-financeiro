@@ -12,7 +12,6 @@ const MovimentacoesRecentes = ({user, data, isLoading, error}) => {
   }
   console.log(error)
     const limit = 10;
-    console.log(gastos)
     // Sort gastos by date in descending order (most recent first)
     const sortedGastos = gastos.slice(0, limit).sort((a, b) => new Date(b.date) - new Date(a.date));
 

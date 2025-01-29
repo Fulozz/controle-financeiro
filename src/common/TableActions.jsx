@@ -5,7 +5,6 @@ import { Search, Upload, Download, Trash2 } from "lucide-react";
 const TableActions = ({title, search, setSearch}) => {
 
   const handleChange = (e) => {
-    console.log(e.target.value)
     setSearch(e.target.value)
   }
   return (

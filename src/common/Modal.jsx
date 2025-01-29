@@ -8,7 +8,7 @@ const Modal = ({isOpen, setIsOpen}) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-        console.log(data);
+        console.log(data, "modal");
     };
 
     return (

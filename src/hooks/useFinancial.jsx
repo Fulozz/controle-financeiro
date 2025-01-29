@@ -30,7 +30,7 @@
 
 
 "use client"
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import useLocalStorage from './useLocalStorage';
 
@@ -41,6 +41,9 @@ const useFinancial = ( userID, mesRef, forceUpdate = false) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const token  = useLocalStorage();
+  const api = process.env.API_URL
+  
+  console.log(api)
 
   useEffect(() => {
     const fetchData = async () => {

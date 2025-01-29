@@ -6,10 +6,20 @@ import { useSidebar } from '@/hooks/useSidebar';
 import TableActions from '@/common/TableActions';
 import PageHeader from '@/common/PageHeader';
 import Modal from '@/common/Modal';
+import useRecurring from '@/hooks/useRecurring';
+import useUser from '@/hooks/useUser';
 const page = () => {
-  const [ isOpen, setIsOpen ] = useState(false)
-  const [search, setSearch] = useState('')
-  const {isActive} = useSidebar()
+  const [ isOpen, setIsOpen ] = useState(false);
+  const [search, setSearch] = useState('');
+  const {isActive} = useSidebar();
+  const user = useUser();
+  const userID = user.id;
+
+  const { data, isLoading, error} = useRecurring(userID);
+  if (isLoading) {
+    return <div className="justify-center items-center flex">Carregando...</div>;
+  };
+ 
   const linkTitle = "Nova recorrente";
   const heading = "Gastos recorrentes"
   return (
@@ -20,7 +30,7 @@ const page = () => {
           <PageHeader linkTitle={linkTitle} heading={heading} isOpen={isOpen} setIsOpen={setIsOpen}/>
           <TableActions title="Gastos recorrentes" setSearch={setSearch} search={search}/>        
         </div>
-        <DataTable setSearch={setSearch} search={search} />
+        <DataTable setSearch={setSearch} search={search} data={data} />
       </div>    
     </div>
     { isOpen && (<Modal isOpen={isOpen} setIsOpen={setIsOpen}/>)}

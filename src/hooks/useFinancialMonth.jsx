@@ -47,7 +47,6 @@ const useFinancialMonth = (userId, mesRef, forceUpdate = false) => {
                       }
                 });
                 const data = response.data.data;
-                console.log(data.data)
                 const newDataArray = data.map((item) => ({
                     id: item.id,
                     data: item.date,

@@ -1,29 +1,7 @@
 import React from 'react';
 
 const DataTable = ({
-  data = [
-    {
-      id: 1,
-      dueDate: '01',
-      description: 'Rent payment',
-      amount: '$1000',
-      category: 'House',
-    },
-    {
-      id: 2,
-      dueDate: '05',
-      description: 'Car insurance',
-      amount: '$200',
-      category: 'Car',
-    },
-    {
-      id: 3,
-      dueDate: '10',
-      description: 'Netflix subscription',
-      amount: '$15',
-      category: 'Streaming',
-    },
-  ],
+  data,
   columns = [
     { id: 'dueDate', label: 'Due Date' },
     { id: 'description', label: 'Description' },

@@ -18,7 +18,6 @@ const DataTable = ({
     let found = false;
 
     columns.forEach((column) => {
-      console.log(column)
       if (typeof item[column.id] === 'string') {
         found = found || item[column.id].toLowerCase().includes(searchTermLower);
       }

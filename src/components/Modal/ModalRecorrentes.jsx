@@ -1,33 +1,38 @@
-import React from 'react';
+"use client"
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast'
 import axios from 'axios'
-import useUser from '@/hooks/useUser';
-// TODO: Implementar a função onSubmit
+import useUser from '@/hooks/useUser'
+import { LoaderCircle } from 'lucide-react'
+
 // TODO: Usuario vai ter um local para registrar quais categorias ele quer, com um limite de 5 categorias para usuario padrão, 
 //       e 20 para usuario premium (implementar sistema de diferenciação de usuario)
 const ModalRecorrentes = ({isOpen, setIsOpen, url}) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [ isLoading, setIsLoading] = useState(false)
     const user = useUser()
     const api = process.env.NEXT_PUBLIC_API_URL
     
     const onSubmit = async (data) => {
-        console.log(data, "ModalRecorrentes");
-        const userType = 'standard'; // This should be dynamically determined based on the logged-in user
+        try {
+            setIsLoading(true)
+            data.tipo = "recorrente"
+            data.userID = user.id
+            const response = await axios.post(`${api}${url}`, data)
 
-        const maxCategories = userType === 'premium' ? 20 : 10;
-
-        if (data.categoria.length > maxCategories) {
-            toast.error(`Você pode registrar no máximo ${maxCategories} categorias.`);
-            return;
-        }  
-        data.tipo = "recorrente"
-        data.userID = user.id
-        await axios.post(`${api}${url}`, data)
-        toast.success("Recorrente registrado com sucesso")
-
-        // Proceed with form submission logic, e.g., sending data to an API
-        console.log('Form submitted successfully:', data);
+            if(response.status === 200){
+            toast.success('Gasto recorrente registrado com sucesso');
+            setIsOpen(false);
+            } else {
+            toast.error("Erro ao registrar recorrente, atualize a sua pagina e tente novamente");
+            }
+        } catch (error) {
+            toast.error("Erro ao registrar recorrente, atualize a sua pagina e tente novamente");
+            setIsOpen(false);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -114,10 +119,11 @@ const ModalRecorrentes = ({isOpen, setIsOpen, url}) => {
                         Sair
                         </div>
                         <button
+                        id="submitButton"
                         type="submit"
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded"
+                        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ${isLoading ? 'cursor-not-allowed' : ''}`}
                         >
-                        Enviar
+                        { isLoading ? (<LoaderCircle className='animate-spin' /> ): 'Enviar' }
                         </button>
                     </div>
                 </form>

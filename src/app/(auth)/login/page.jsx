@@ -37,7 +37,7 @@ const page = () => {
             type="email"
             id="email"
             name="email"
-            className="form-control w-full  py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+            className="form-control w-full  py-2 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
           />
           {errors.email?.type === 'required' && <span className="text-red-500 text-sm">Email is required.</span>}
           {errors.email?.type === 'pattern' && <span className="text-red-500 text-sm">Please enter a valid email address.</span>}
@@ -49,7 +49,7 @@ const page = () => {
             type="password"
             id="password"
             name="password"
-            className="form-control w-full py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+            className="form-control w-full py-2 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
           />
           {errors.password?.type === 'required' && <span className="text-red-500 text-sm">Password is required.</span>}
           {errors.password?.type === 'minLength' && <span className="text-red-500 text-sm">Password must be at least 8 characters long.</span>}

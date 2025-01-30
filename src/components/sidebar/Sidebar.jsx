@@ -53,6 +53,9 @@ const Sidebar = () => {
                             <li className={`pl-1  ${isDashboardOpen ? '' : 'hidden'}`}>
                             Relatórios
                             </li>
+                            <a href="/perfil" className={`pl-1  ${isDashboardOpen ? '' : 'hidden'}`}>
+                            Perfil
+                            </a>
                         </div>
                     </ul>
                     <ul className="flex w-full min-w-0 flex-col gap-1">

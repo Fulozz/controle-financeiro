@@ -8,7 +8,7 @@ import { LoaderCircle } from 'lucide-react'
 
 // TODO: Usuario vai ter um local para registrar quais categorias ele quer, com um limite de 5 categorias para usuario padrão, 
 //       e 20 para usuario premium (implementar sistema de diferenciação de usuario)
-const ModalRecorrentes = ({isOpen, setIsOpen, url}) => {
+const ModalRecorrentes = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate}) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [ isLoading, setIsLoading] = useState(false)
     const user = useUser()
@@ -24,13 +24,13 @@ const ModalRecorrentes = ({isOpen, setIsOpen, url}) => {
             if(response.status === 200){
             toast.success('Gasto recorrente registrado com sucesso');
             setIsOpen(false);
-            } else {
-            toast.error("Erro ao registrar recorrente, atualize a sua pagina e tente novamente");
             }
         } catch (error) {
             toast.error("Erro ao registrar recorrente, atualize a sua pagina e tente novamente");
             setIsOpen(false);
         } finally {
+            setForceUpdate(true);
+            setIsOpen(false);
             setIsLoading(false);
         }
     };

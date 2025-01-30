@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import useLocalStorage from './useLocalStorage';
 
-const useRecurring = ( userID ) => {
+const useRecurring = ( userID, forceUpdate = false ) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -26,9 +26,9 @@ const useRecurring = ( userID ) => {
         if(token && userID) {
             fetchData();
         }
-    }, [ userID, token]);
+    }, [ userID, token, forceUpdate]);
 
-    return { data, isLoading, error };
+    return { data, isLoading, error, forceUpdate };
 };
 
 export default useRecurring;

@@ -18,7 +18,7 @@
  */
 "use client"
 import { useState, useEffect } from 'react'
-
+import axios from 'axios'
 
 // Hook para buscar dados do usuário
 const useUser = () => {
@@ -33,7 +33,7 @@ const useUser = () => {
                 return null;
             }
             if(token){
-                const response = await fetch(`${api}/api/v1/profile`, {
+                const response = await axios.get(`${api}/api/v1/profile`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -44,7 +44,8 @@ const useUser = () => {
                 setUser({
                     id: data._id,
                     name: data.name,
-                    email: data.email
+                    email: data.email,
+                    diaVencimento: data.diaVencimento
                 })
             }
         }          

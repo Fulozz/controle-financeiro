@@ -33,7 +33,7 @@ const useUser = () => {
                 return null;
             }
             if(token){
-                const response = await axios.get(`${api}/api/v1/profile`, {
+                const response = await fetch(`${api}/api/v1/profile`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

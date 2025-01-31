@@ -28,7 +28,8 @@ const page = () => {
 
     const userID = user.id
     const mesRef = new Date().toISOString().slice(0, 7)
-    const { data, isLoading: externalIsLoading, error, forceUpdate: externalForceUpdate } = useFinancial(userID, mesRef, forceUpdate);
+    console.log(mesRef)
+    const { data: cardData, isLoading: externalIsLoading, error, forceUpdate: externalForceUpdate } = useFinancial(userID, mesRef, forceUpdate);
     const { data: tableData, isLoading: tableIsLoading, error: tableError, forceUpdate: tableForceUpdate } = useFinancialMonth(userID, mesRef, forceUpdate);
 
     const { isLoading, isAuthenticated } = useProtectedRoute();
@@ -46,7 +47,7 @@ const page = () => {
 return (
     <div className={`block  pl-0 md:pl-[270px]`} >
       <div className="max-w-2xl md:max-w-none mx-auto pt-2">
-        <DashboardCard user={user} mes={mesPorExtenso} data={data} mesRef={mesRef} isLoading={externalIsLoading} error={error} />
+        <DashboardCard user={user} mes={mesPorExtenso} data={cardData} mesRef={mesRef} isLoading={externalIsLoading} error={error} />
       </div>
 
       <div className="max-w-2xl md:max-w-none mx-auto pt-2">

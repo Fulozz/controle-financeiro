@@ -1,7 +1,7 @@
 import useFinancial from '@/hooks/useFinancial';
 import React from 'react';
 
-const DashboardCard = ({ user, mesRef, data, isLoading, error}) => {
+const DashboardCard = ({ mesRef, data, isLoading, error}) => {
 
  
   const mes = mesRef

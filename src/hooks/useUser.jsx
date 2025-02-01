@@ -23,7 +23,7 @@ import axios from 'axios'
 // Hook para buscar dados do usuário
 const useUser = () => {
     
-    const [user, setUser] = useState({name: '', email: '', id: ''})
+    const [user, setUser] = useState({name: '', email: '', id: '', diaVencimento: 0})   
     const api = process.env.NEXT_PUBLIC_API_URL
 
     useEffect(()=> {
@@ -53,7 +53,7 @@ const useUser = () => {
     }
     fetchUser()
 }, [])
-
+    console.log(user)
   return user
 }
 

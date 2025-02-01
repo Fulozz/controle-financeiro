@@ -9,21 +9,22 @@ const page = () => {
   const [userData, setUserData] = useState({
     name: user.name || '',
     email: user.email || '',
-    diaVencimento: user.config?.diaVencimento || '', // Assuming diaVencimento is a string
+    diaVencimento: user?.diaVencimento || 0, // Assuming diaVencimento is a number
   });
-  console.log(userData, user)
+  console.log(user)
   useEffect(() => {
     if (user) { // Check if user data is available
         setUserData({
             name: user.name || '',
             email: user.email || '',
-            diaVencimento: user.config?.diaVencimento || ''
+            diaVencimento: user?.diaVencimento || 0
         });
     }
 }, [user]);
   const token = useLocalStorage();
   const api = process.env.NEXT_PUBLIC_API_URL;
-  const [isEditing, setIsEditing] = useState(true); // Assuming initial edit mode
+  console.log(api)
+  const [isEditing, setIsEditing] = useState(false); // Assuming initial edit mode
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -34,17 +35,14 @@ const page = () => {
     try {
       const updatedUser = {
         name: userData.name,
-        config: { 
-          ...user.config,
-          diaVencimento: userData.diaVencimento 
-        }
+        diaVencimento: userData.diaVencimento
       }; // Use userData state directly for update
       const response = await axios.put(`${api}/api/v1/user/update/${user.id}`, updatedUser, {
         headers: {
-          authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`
         }
       });
-      console.log('Salvando as alterações:', response.data); // Assuming response is available
+      console.log('Salvando as alterações:', response); // Assuming response is available
       setIsEditing(false); // Switch back to display mode
     } catch (error) {
       console.error('Erro ao salvar as alterações:', error);
@@ -63,35 +61,51 @@ const page = () => {
   };
 
   return (
-    <div className="pl-0 md:pl-[270px]">
-      <h1>Perfil</h1>
+    <div className="pl-0 md:pl-[270px] p-6 min-h-screen bg-gray-100 text-black dark:bg-gray-800 dark:text-white">
+      <h1 className="text-3xl font-bold mb-6">Perfil</h1>
       {isEditing ? (
-        <form onSubmit={handleSave} className="flex flex-col">
-          <div className="flex">
-            <label className="pr-2">
-              Nome:
-            </label>
-            <input type="text" name="name" value={userData.name} onChange={handleChange} />
+        <form onSubmit={handleSave} className="space-y-4 p-6 rounded shadow-md bg-white dark:bg-gray-700">
+          <div className="flex flex-col">
+            <label className="text-lg font-medium mb-2">Nome:</label>
+            <input
+              type="text"
+              name="name"
+              value={userData.name}
+              onChange={handleChange}
+              className="p-2 border rounded border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-white"
+            />
           </div>
-          <label>
-            Email:
-            <input type="email" name="email" value={userData.email} onChange={handleChange} />
-          </label>
-          <label>
-            Data de vencimento do cartão:
-            <input type="text" name="diaVencimento" value={userData.diaVencimento} onChange={handleChange} />
-          </label>
-          <button type="submit">Salvar</button>
+          <div className="flex flex-col">
+            <label className="text-lg font-medium mb-2">Email:</label>
+            <p className="p-2 rounded bg-gray-200 dark:bg-gray-600">{userData.email}</p>
+          </div>
+          <div className="flex flex-col">
+            <label className="text-lg font-medium mb-2">Data de vencimento do cartão:</label>
+            <input
+              type="number"
+              name="diaVencimento"
+              value={userData.diaVencimento}
+              onChange={handleChange}
+              className="p-2 border rounded border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-white"
+            />
+          </div>
+          <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+            Salvar
+          </button>
         </form>
       ) : (
-        <div>
-          <p>Nome: {userData.name}</p>
-          <p>Email: {userData.email}</p>
-          <p>Data de vencimento do cartão: {userData.diaVencimento}</p>
-          <button onClick={handleEdit}>Editar</button>
+        <div className="space-y-4 p-6 rounded shadow-md bg-white dark:bg-gray-700">
+          <p className="text-lg"><span className="font-medium">Nome:</span> {userData.name}</p>
+          <p className="text-lg"><span className="font-medium">Email:</span> {userData.email}</p>
+          <p className="text-lg"><span className="font-medium">Data de vencimento do cartão:</span> {userData.diaVencimento}</p>
+          <button onClick={handleEdit} className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">
+            Editar
+          </button>
         </div>
       )}
-      <button onClick={logout}>Sair</button>
+      <button onClick={logout} className="mt-6 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+        Sair
+      </button>
     </div>
   );
 };

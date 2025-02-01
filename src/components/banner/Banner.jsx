@@ -3,17 +3,36 @@ import React, { useState, useEffect } from 'react';
 
 function InstallBanner() {
     const [isShown, setIsShown] = useState(false);
+    const [deferredPrompt, setDeferredPrompt] = useState(null);
 
     useEffect(() => {
         const isBannerInstalled = localStorage.getItem('isBannerInstalled') === 'true';
         setIsShown(!isBannerInstalled);
+
+        const handleBeforeInstallPrompt = (e) => {
+            e.preventDefault();
+            setDeferredPrompt(e);
+            setIsShown(true);
+        };
+
+        window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+        return () => {
+            window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+        };
     }, []);
 
     const handleInstall = () => {
-        // Lógica para mostrar as instruções de instalação
-        alert('Toque e segure no ícone do seu navegador e escolha "Adicionar à tela inicial"');
-        localStorage.setItem('isBannerInstalled', 'true');
-        setIsShown(false);
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    localStorage.setItem('isBannerInstalled', 'true');
+                    setIsShown(false);
+                }
+                setDeferredPrompt(null);
+            });
+        }
     };
 
     if (!isShown) {

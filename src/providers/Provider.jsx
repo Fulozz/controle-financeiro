@@ -5,11 +5,11 @@ import React, { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "next-themes";
 import Sidebar from "@/components/sidebar/Sidebar";
-import { AuthProvider } from "@/hooks/useAuth";
+import { AuthProvider, useProtectedRoute } from "@/hooks/useAuth";
 import BottomBar from '@/components/bottombar/BottomBar'
 
 const Provider = ({ children }) => {
-
+  
 
   // testar isso para controler a sidebar se o usuário estiver autenticado
   return (

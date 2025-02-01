@@ -8,6 +8,7 @@ import PageHeader from '@/common/PageHeader';
 import ModalParcelados from '@/components/Modal/ModalParcelados';
 import useRecurring from '@/hooks/useRecurring';
 import useUser from '@/hooks/useUser';
+
 const page = () => {
   const [ isOpen, setIsOpen ] = useState(false);
   const [search, setSearch] = useState('');
@@ -17,10 +18,7 @@ const page = () => {
   const userID = user.id;
 
   const { data, isLoading, error} = useRecurring(userID, forceUpdate);
-  if (isLoading) {
-    return <div className="justify-center items-center flex">Carregando...</div>;
-  };
- 
+
   const linkTitle = "Conta parcelada";
   const heading = "Contas Parceladas"
   return (

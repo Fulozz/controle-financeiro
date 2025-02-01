@@ -6,6 +6,11 @@ function InstallBanner() {
     const [deferredPrompt, setDeferredPrompt] = useState(null);
 
     useEffect(() => {
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (!isMobile) {
+            return;
+        }
+
         const isBannerInstalled = localStorage.getItem('isBannerInstalled') === 'true';
         setIsShown(!isBannerInstalled);
 

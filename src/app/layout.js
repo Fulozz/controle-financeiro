@@ -21,6 +21,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body
       suppressHydrationWarning={true}
         cz-shortcut-listen="true"

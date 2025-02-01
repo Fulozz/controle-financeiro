@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Provider from "@/providers/Provider";
+import InstallBanner from "@/components/banner/Banner";
 
 
 const geistSans = Geist({
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased   bg-slate-200 text-black dark:text-white dark:bg-[#09090B]`}
       >
         <Provider>
+          <InstallBanner />
           { children }
         </Provider>
       </body>

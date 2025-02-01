@@ -10,7 +10,7 @@ function InstallBanner() {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-blue-500 text-white p-4 text-center">
+    <div className="fixed bottom-0 left-0 right-0 pb-[140px] h-10  bg-blue-500 text-white p-4 text-center">
       Adicione este site à sua tela inicial para um acesso mais rápido!
       <button onClick={handleInstall} className="bg-white text-blue-500 rounded-md px-4 py-2">
         Instalar

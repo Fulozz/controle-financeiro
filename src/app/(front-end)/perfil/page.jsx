@@ -61,7 +61,8 @@ const page = () => {
   };
 
   return (
-    <div className="px-4 md:pl-[270px] p-6 min-h-screen w-full bg-gray-100 text-black dark:bg-gray-800 dark:text-white">
+    <div className="px-4  p-6  md:pl-[270px] flex flex-col justify-between min-h-[85vh] w-full  text-black   dark:text-white">
+      <div>
       <h1 className="text-3xl font-bold mb-6">Perfil</h1>
       {isEditing ? (
         <form onSubmit={handleSave} className="space-y-4 p-6 rounded shadow-md bg-white dark:bg-gray-700">
@@ -103,8 +104,9 @@ const page = () => {
           </button>
         </div>
       )}
+      </div>
       <button onClick={logout} className="mt-6 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
-        Sair
+        Logout
       </button>
     </div>
   );

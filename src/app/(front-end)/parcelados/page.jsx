@@ -2,15 +2,17 @@
 import React, { useState }from 'react'
 
 import DataTable from '@/common/DataTable';
+
 import TableActions from '@/common/TableActions';
 import PageHeader from '@/common/PageHeader';
-import ModalRecorrentes from '@/components/Modal/ModalRecorrentes';
+import ModalParcelados from '@/components/Modal/ModalParcelados';
 import useRecurring from '@/hooks/useRecurring';
 import useUser from '@/hooks/useUser';
 const page = () => {
   const [ isOpen, setIsOpen ] = useState(false);
   const [search, setSearch] = useState('');
   const [ forceUpdate, setForceUpdate ] = useState(false);
+
   const user = useUser();
   const userID = user.id;
 
@@ -19,20 +21,20 @@ const page = () => {
     return <div className="justify-center items-center flex">Carregando...</div>;
   };
  
-  const linkTitle = "Conta recorrente";
-  const heading = "Contas recorrentes"
+  const linkTitle = "Conta parcelada";
+  const heading = "Contas Parceladas"
   return (
     <>
     <div className={`  justify-center pl-0 md:pl-[270px]`}>
       <div className="">
         <div className="py-4">
           <PageHeader linkTitle={linkTitle} heading={heading} isOpen={isOpen} setIsOpen={setIsOpen}/>
-          <TableActions title="Contas recorrentes" setSearch={setSearch} search={search}/>        
+          <TableActions title="Contas Recorrentes" setSearch={setSearch} search={search}/>        
         </div>
         <DataTable setSearch={setSearch} search={search} data={data} />
       </div>    
     </div>
-    { isOpen && (<ModalRecorrentes isOpen={isOpen} setIsOpen={setIsOpen} forceUpdate={forceUpdate} setForceUpdate={setForceUpdate} url={"/api/v1/transaction/register/recurring"}/>)}
+    { isOpen && (<ModalParcelados isOpen={isOpen} setIsOpen={setIsOpen} forceUpdate={forceUpdate} setForceUpdate={setForceUpdate} url={"/api/v1/transaction/register/installments"}/>)}
     </>
   )
 }

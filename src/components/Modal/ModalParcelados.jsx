@@ -7,9 +7,7 @@ import useUser from '@/hooks/useUser'
 import { LoaderCircle } from 'lucide-react'
 import useLocalStorage from '@/hooks/useLocalStorage';
 
-// TODO: Usuario vai ter um local para registrar quais categorias ele quer, com um limite de 5 categorias para usuario padrão, 
-//       e 20 para usuario premium (implementar sistema de diferenciação de usuario)
-const ModalRecorrentes = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate}) => {
+const ModalParcelados = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate}) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [ isLoading, setIsLoading] = useState(false)
     const user = useUser()
@@ -19,7 +17,8 @@ const ModalRecorrentes = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate})
         const token = useLocalStorage()
         try {
             setIsLoading(true)
-            data.tipo = "recorrente"
+            data.tipo = "parcelado"
+            data.formaPagamento = "credito"
             data.userID = user.id
             const response = await axios.post(`${api}${url}`, data, {
                 headers: {
@@ -28,11 +27,11 @@ const ModalRecorrentes = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate})
             })
 
             if(response.status === 200){
-            toast.success('Gasto recorrente registrado com sucesso');
+            toast.success('Gasto parcelado registrado com sucesso');
             setIsOpen(false);
             }
         } catch (error) {
-            toast.error("Erro ao registrar recorrente, atualize a sua pagina e tente novamente");
+            toast.error("Erro ao registrar parcelado, atualize a sua pagina e tente novamente");
             setIsOpen(false);
         } finally {
             setForceUpdate(true);
@@ -52,7 +51,7 @@ const ModalRecorrentes = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate})
         )}
         <div className="fixed inset-0 z-50 flex justify-center items-center">
             <div className="bg-white p-6 rounded-lg shadow-lg  h-full w-full md:w-[500px] md:h-auto">
-                <h2 className="text-2xl text-white dark:text-black font-bold mb-4">Registrar Gasto Recorrente</h2>
+                <h2 className="text-2xl text-white dark:text-black font-bold mb-4">Registrar Gasto Parcelado</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nome">
@@ -101,6 +100,19 @@ const ModalRecorrentes = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate})
                         {errors.valor && <span className="text-red-500 text-sm">Este campo é obrigatório</span>}
                     </div>
                     <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="parcelas">
+                            Número de Parcelas
+                        </label>
+                        <input
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
+                            id="parcelas"
+                            type="number"
+                            placeholder="Número de Parcelas"
+                            {...register('parcelas', { required: true })}
+                        />
+                        {errors.parcelas && <span className="text-red-500 text-sm">Este campo é obrigatório</span>}
+                    </div>
+                    <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="categoria">
                             Categoria
                         </label>
@@ -109,9 +121,8 @@ const ModalRecorrentes = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate})
                             id="categoria"
                             {...register('categoria', { required: true })}
                         >
-
                             <option value="streaming">Streaming</option>
-                            <option value="casa">Carro</option>
+                            <option value="carro">Carro</option>
                             <option value="casa">Casa (Energia, Água)</option>
                             <option value="outros">Outros</option>
                         </select>
@@ -139,4 +150,4 @@ const ModalRecorrentes = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate})
     );
 };
 
-export default ModalRecorrentes;
+export default ModalParcelados;

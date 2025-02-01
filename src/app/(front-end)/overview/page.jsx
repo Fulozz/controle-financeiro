@@ -6,7 +6,6 @@ import useUser from '@/hooks/useUser'
 import DashboardCard from '@/components/dashboard/DashboardCard';
 import moment from 'moment';
 import BottomMenu from '@/components/cadastro/BottomMenu';
-import { useSidebar } from '@/hooks/useSidebar';
 import DashboardTables from '@/components/dashboard/DashboardTables';
 import useFinancial from '@/hooks/useFinancial';
 import useFinancialMonth from '@/hooks/useFinancialMonth'
@@ -23,7 +22,7 @@ const page = () => {
     const mesPorExtenso = moment(dataAtual).format('MMMM');
     const user = useUser();
 
-    const { isActive } = useSidebar()
+   
     const [forceUpdate, setForceUpdate] = useState(false);
 
     const userID = user.id

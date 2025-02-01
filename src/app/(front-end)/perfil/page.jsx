@@ -61,7 +61,7 @@ const page = () => {
   };
 
   return (
-    <div className="pl-0 md:pl-[270px] p-6 min-h-screen bg-gray-100 text-black dark:bg-gray-800 dark:text-white">
+    <div className="px-4 md:pl-[270px] p-6 min-h-screen w-full bg-gray-100 text-black dark:bg-gray-800 dark:text-white">
       <h1 className="text-3xl font-bold mb-6">Perfil</h1>
       {isEditing ? (
         <form onSubmit={handleSave} className="space-y-4 p-6 rounded shadow-md bg-white dark:bg-gray-700">

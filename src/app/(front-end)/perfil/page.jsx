@@ -69,7 +69,7 @@ const page = () => {
   const logout = () => {
     // Implement logout logic here (e.g., remove token from storage, redirect)
     localStorage.removeItem('token');
-    window.location.href = '/login';
+    window.location.href = '/';
   };
 
   return (

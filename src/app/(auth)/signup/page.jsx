@@ -32,9 +32,9 @@ const page = () => {
   };
 
   return (
-    <div className="signup-container flex items-center justify-center h-screen bg-gray-100 dark:bg-black">
+    <div className="signup-container flex items-center justify-center h-screen w-full bg-gray-100 dark:bg-black">
       <form onSubmit={handleSubmit(onSubmit)} className="signup-form flex flex-col w-full max-w-md bg-white rounded-md shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center mb-4">Criar Conta</h2>
+        <h2 className="text-2xl font-bold text-center mb-4 text-black">Criar Conta</h2>
         {/* Campos de nome, email e senha */}
         <div className="form-group mb-4">
           <label htmlFor="name" className="text-gray-700 font-medium block mb-2">Nome Completo</label>
@@ -58,7 +58,7 @@ const page = () => {
           {isLoading ? 'Criando Conta...' : 'Criar Conta'}
         </button>
         <h4 className="justify-center text-center w-full py-2 font-medium text-lg">ou</h4>
-        <a href="/login" className="login-button text-center w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed"  >Login</a>
+        <a href="/" className="login-button text-center w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-gray-400 disabled:cursor-not-allowed"  >Login</a>
       </form>
     </div>
   );

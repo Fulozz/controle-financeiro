@@ -17,7 +17,7 @@ const page = () => {
       const response = await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/login`, data);
       localStorage.setItem('token', response.data.token);
       toast.success('Login successful!');
-      window.location.href = '/dashboard'; // Redirect to main page
+      window.location.href = '/'; // Redirect to main page
     } catch (error) {
       console.error('Error logging in:', error);
       toast.error('Login failed. Please check your credentials.'); // Inform user about login failure

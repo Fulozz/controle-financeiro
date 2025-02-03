@@ -29,7 +29,7 @@ const BottomBar = () => {
         <a href="/recorrentes" className="p-4">
           <Repeat2 className="h-[40px] w-[40px]" />
         </a>
-        <a href="/dashboard" className="p-4">
+        <a href="/" className="p-4">
           <House className="h-[40px] w-[40px]" />
         </a>
         <a href="/perfil" className="p-4">

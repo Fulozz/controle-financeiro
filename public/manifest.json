@@ -2,7 +2,7 @@
     "name": "Controle Financeiro",
     "short_name": "Financeiro",
     "description": "Este é um aplicativo para seu controle financeiro, e planejamento",
-    "start_url": "/dashboard",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#3f51b5",

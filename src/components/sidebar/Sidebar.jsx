@@ -47,7 +47,7 @@ const Sidebar = () => {
                         </button>
                         </li>
                         <div className="border-l-[1px] border-black dark:border-white ml-5 pl-1">
-                            <a href="/dashboard" className={`pl-1 ${isDashboardOpen ? '' : 'hidden'}`}>
+                            <a href="/" className={`pl-1 ${isDashboardOpen ? '' : 'hidden'}`}>
                             Dashboard
                             </a>
                             <li className={`pl-1  ${isDashboardOpen ? '' : 'hidden'}`}>

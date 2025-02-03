@@ -9,7 +9,7 @@ import BottomMenu from '@/components/cadastro/BottomMenu';
 import DashboardTables from '@/components/dashboard/DashboardTables';
 import useFinancial from '@/hooks/useFinancial';
 import useFinancialMonth from '@/hooks/useFinancialMonth'
-
+import useRecurring from '@/hooks/useRecurring'
 // TODO: arrumar um jeito de não recarregar a pagina toda vez q tem uma alteração
 const page = () => {
   moment.updateLocale('pt-br', {
@@ -30,6 +30,7 @@ const page = () => {
 
     const { data: cardData, isLoading: externalIsLoading, error, forceUpdate: externalForceUpdate } = useFinancial(userID, mesRef, forceUpdate);
     const { data: tableData, isLoading: tableIsLoading, error: tableError, forceUpdate: tableForceUpdate } = useFinancialMonth(userID, mesRef, forceUpdate);
+    const { data: recurring, isLoading: recurringLoading, error: recurringError, forceUpdate: recurringForceUpdate } = useRecurring(userID, mesRef, forceUpdate, 'recorrente');
 
     const { isLoading, isAuthenticated } = useProtectedRoute();
 

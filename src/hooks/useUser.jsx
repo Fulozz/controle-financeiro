@@ -18,7 +18,6 @@
  */
 "use client"
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 
 // Hook para buscar dados do usuário
 const useUser = () => {
@@ -53,7 +52,6 @@ const useUser = () => {
     }
     fetchUser()
 }, [])
-    console.log(user)
   return user
 }
 

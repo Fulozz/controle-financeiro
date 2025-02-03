@@ -27,7 +27,7 @@ const page = () => {
 
     const userID = user.id
     const mesRef = new Date().toISOString().slice(0, 7)
-    console.log(mesRef)
+
     const { data: cardData, isLoading: externalIsLoading, error, forceUpdate: externalForceUpdate } = useFinancial(userID, mesRef, forceUpdate);
     const { data: tableData, isLoading: tableIsLoading, error: tableError, forceUpdate: tableForceUpdate } = useFinancialMonth(userID, mesRef, forceUpdate);
 

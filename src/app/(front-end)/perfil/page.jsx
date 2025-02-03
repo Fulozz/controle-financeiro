@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import useUser from '@/hooks/useUser';
 import axios from 'axios';
 import useLocalStorage from '@/hooks/useLocalStorage';
+import { useProtectedRoute } from '@/hooks/useAuth';
 
 const page = () => {
   const user = useUser();
@@ -11,7 +12,7 @@ const page = () => {
     email: user.email || '',
     diaVencimento: user?.diaVencimento || 0, // Assuming diaVencimento is a number
   });
-  console.log(user)
+
   useEffect(() => {
     if (user) { // Check if user data is available
         setUserData({
@@ -23,8 +24,19 @@ const page = () => {
 }, [user]);
   const token = useLocalStorage();
   const api = process.env.NEXT_PUBLIC_API_URL;
-  console.log(api)
+
   const [isEditing, setIsEditing] = useState(false); // Assuming initial edit mode
+
+  const { isLoading, isAuthenticated} = useProtectedRoute();
+  if(isLoading | !user) {
+    return (
+      <div className='loading h-auto w-full '>Carregando...</div>
+    )
+  }
+  if(!isAuthenticated) {
+    // Redirecionamento já é realizado no hook
+    return null;
+  }
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -42,7 +54,7 @@ const page = () => {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log('Salvando as alterações:', response); // Assuming response is available
+
       setIsEditing(false); // Switch back to display mode
     } catch (error) {
       console.error('Erro ao salvar as alterações:', error);

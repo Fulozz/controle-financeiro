@@ -42,7 +42,6 @@ const DataTable = ({
         </thead>
         <tbody>
           {filteredData.map((row) => (
-            console.log(row),
             <tr key={row.id} className="text-gray-700 dark:text-gray-400">
               {columns.map((column) => (
                 <td key={column.id} className="px-2 py-1">

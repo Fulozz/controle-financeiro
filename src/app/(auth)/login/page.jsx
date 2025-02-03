@@ -17,7 +17,7 @@ const page = () => {
       const response = await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/login`, data);
       localStorage.setItem('token', response.data.token);
       toast.success('Login successful!');
-      window.location.href = '/overview'; // Redirect to main page
+      window.location.href = '/dashboard'; // Redirect to main page
     } catch (error) {
       console.error('Error logging in:', error);
       toast.error('Login failed. Please check your credentials.'); // Inform user about login failure
@@ -27,7 +27,7 @@ const page = () => {
   };
 
   return (
-    <div className="login-container flex items-center justify-center h-screen bg-gray-100 dark:bg-black ">
+    <div className="login-container flex items-center justify-center h-screen w-full bg-gray-100 dark:bg-black ">
       <form onSubmit={handleSubmit(onSubmit)} className="login-form flex flex-col w-full max-w-md bg-white rounded-md shadow-md p-8">
         <h2 className="text-2xl font-bold text-center mb-4 text-black">Controle Financeiro</h2>
         <div className="form-group mb-4">

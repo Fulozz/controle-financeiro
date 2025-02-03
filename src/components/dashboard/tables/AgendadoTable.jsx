@@ -7,7 +7,6 @@ const AgendadoTable = () => {
   const user = useUser()
   const userID = user.id
   const { data, isLoading, error} = useRecurring(userID);
-  console.log(data)
   const limit = 10;
 
   return (

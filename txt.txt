@@ -8,3 +8,6 @@ Seletor da data de vencimento na area do perfil
 
 
 Leitor de código de barras para pesquisa de notas fiscais (tentar fazer a minha própria lib)
+
+
+TODO: FAZER COM QUE APLICAÇAO LOGUE COM O GLOOGLE AO INVES DE CRIAR UMA CONTA COM E-MAIL

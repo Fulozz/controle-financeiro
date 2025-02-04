@@ -22,7 +22,7 @@ const Provider = ({ children }) => {
               toastOptions={{ duration: 2000 }}
             />
               <Sidebar />
-              <div className="flex pb-[120px] md:block md:pb-0" >
+              <div className="pb-[120px] md:block md:pb-0" >
                 {children}
               </div>
               <BottomBar />

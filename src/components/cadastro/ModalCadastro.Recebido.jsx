@@ -32,7 +32,11 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen, forceUpdate, setForceUpdate 
       data.userID = user.id;
       data.tipo = "recebido";
       data.status = "recebido";
-      await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/register`,data)
+      await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/register`,data,{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       toast.success("Recebido cadastrado com sucesso")
       setPostLoading(false)
       setIsOpen(false)

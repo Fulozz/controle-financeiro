@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import useUser from "@/hooks/useUser";
 import toast from 'react-hot-toast'
 import axios from "axios";
+import useLocalStorage from "@/hooks/useLocalStorage";
 const ModalCadastroPago = ({ isOpen, setIsOpen, forceUpdate, setForceUpdate }) => {
   const { isLoading, isAuthenticated } = useProtectedRoute();
   const [postLoading, setPostLoading]= useState(false);
@@ -24,6 +25,7 @@ const ModalCadastroPago = ({ isOpen, setIsOpen, forceUpdate, setForceUpdate }) =
   // TODO: Implementar a função onSubmit
 
   const onSubmit = async (data) => {
+    const token = useLocalStorage()
     try{
       const date = new Date(data.date);
       const year = date.getFullYear();
@@ -32,7 +34,11 @@ const ModalCadastroPago = ({ isOpen, setIsOpen, forceUpdate, setForceUpdate }) =
       setPostLoading(true)
       data.userID = user.id;
       data.tipo = "pago"
-      await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/register`,data)
+      await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/register`,data,{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       toast.success("Pagamento cadastrado com sucesso")
       setPostLoading(false)
       setIsOpen(false)

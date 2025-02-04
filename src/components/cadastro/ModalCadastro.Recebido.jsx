@@ -5,10 +5,10 @@ import { useForm } from "react-hook-form";
 import useUser from "@/hooks/useUser";
 import toast from "react-hot-toast";
 import axios from "axios";
-const ModalCadastroRecebido = ({ isOpen, setIsOpen, forceUpdate, setForceUpdate }) => {
+import useLocalStorage from "@/hooks/useLocalStorage";
+const ModalCadastroRecebido = ({ isOpen, setIsOpen, setForceUpdate }) => {
   const { isLoading, isAuthenticated } = useProtectedRoute();
   const [postLoading, setPostLoading]= useState(false);
-  const token = localStorage.getItem('token');
   const user = useUser();
   const {
     register,
@@ -22,6 +22,7 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen, forceUpdate, setForceUpdate 
     // Redirecionamento já é realizado no hook
     return null;
   }
+  const token = useLocalStorage()
   const onSubmit = async (data) => {
     try{
       const date = new Date(data.date);
@@ -32,6 +33,7 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen, forceUpdate, setForceUpdate 
       data.userID = user.id;
       data.tipo = "recebido";
       data.status = "recebido";
+      
       await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/register`,data,{
         headers: {
           Authorization: `Bearer ${token}`

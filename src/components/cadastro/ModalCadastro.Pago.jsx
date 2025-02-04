@@ -22,10 +22,9 @@ const ModalCadastroPago = ({ isOpen, setIsOpen, forceUpdate, setForceUpdate }) =
     // Redirecionamento já é realizado no hook
     return null;
   }
-  // TODO: Implementar a função onSubmit
 
+  const token = useLocalStorage()
   const onSubmit = async (data) => {
-    const token = useLocalStorage()
     try{
       const date = new Date(data.date);
       const year = date.getFullYear();
@@ -34,6 +33,7 @@ const ModalCadastroPago = ({ isOpen, setIsOpen, forceUpdate, setForceUpdate }) =
       setPostLoading(true)
       data.userID = user.id;
       data.tipo = "pago"
+      
       await axios.post(`https://portfolio-backend-zpig.onrender.com/api/v1/transaction/register`,data,{
         headers: {
           Authorization: `Bearer ${token}`

@@ -12,6 +12,9 @@
 import { useState, useEffect } from 'react';
 
 const useLocalStorage = () => {
+    if (typeof window === 'undefined') {
+        return null;
+    }
     const [token, setToken] = useState(null);
 
     useEffect(() => {

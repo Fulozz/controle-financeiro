@@ -26,7 +26,7 @@ const page = () => {
 
    
     const [forceUpdate, setForceUpdate] = useState(false);
-
+    
     const userID = user.id
     const mesRef = new Date().toISOString().slice(0, 7)
 

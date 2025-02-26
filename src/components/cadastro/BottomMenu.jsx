@@ -3,7 +3,7 @@ import { Plus } from 'lucide-react'
 import React, { useState } from 'react'
 import ModalCadastroPago from '../cadastro/ModalCadastro.Pago'
 import ModalCadastroRecebido from '../cadastro/ModalCadastro.Recebido'
-const BottomMenu = ({ user, forceUpdate, setForceUpdate }) => {
+const BottomMenu = ({ user }) => {
   const [isOpenRecebido, setIsOpenRecebido] = useState(false)
   const [isOpenPago, setIsOpenPago] = useState(false)
   return (
@@ -21,12 +21,12 @@ const BottomMenu = ({ user, forceUpdate, setForceUpdate }) => {
       }
       {
         isOpenRecebido === true ? (
-          <ModalCadastroRecebido isOpen={isOpenRecebido} setIsOpen={setIsOpenRecebido} forceUpdate={forceUpdate} setForceUpdate={setForceUpdate} />
+          <ModalCadastroRecebido isOpen={isOpenRecebido} setIsOpen={setIsOpenRecebido} />
         ) : null
       }
       {
         isOpenPago === true ? (
-          <ModalCadastroPago isOpen={isOpenPago} setIsOpen={setIsOpenPago} forceUpdate={forceUpdate} setForceUpdate={setForceUpdate} />
+          <ModalCadastroPago isOpen={isOpenPago} setIsOpen={setIsOpenPago} />
         ) : null
       }
     </div>

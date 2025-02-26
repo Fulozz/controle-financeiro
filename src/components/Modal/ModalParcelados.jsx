@@ -7,7 +7,7 @@ import useUser from '@/hooks/useUser'
 import { LoaderCircle } from 'lucide-react'
 import useLocalStorage from '@/hooks/useLocalStorage';
 
-const ModalParcelados = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate}) => {
+const ModalParcelados = ({isOpen, setIsOpen, url}) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [ isLoading, setIsLoading] = useState(false)
     const user = useUser()
@@ -34,7 +34,7 @@ const ModalParcelados = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate}) 
             toast.error("Erro ao registrar parcelado, atualize a sua pagina e tente novamente");
             setIsOpen(false);
         } finally {
-            setForceUpdate(true);
+
             setIsOpen(false);
             setIsLoading(false);
         }

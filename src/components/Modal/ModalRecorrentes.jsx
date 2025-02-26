@@ -9,7 +9,7 @@ import useLocalStorage from '@/hooks/useLocalStorage';
 
 // TODO: Usuario vai ter um local para registrar quais categorias ele quer, com um limite de 5 categorias para usuario padrão, 
 //       e 20 para usuario premium (implementar sistema de diferenciação de usuario)
-const ModalRecorrentes = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate}) => {
+const ModalRecorrentes = ({isOpen, setIsOpen, url }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [ isLoading, setIsLoading] = useState(false)
     const user = useUser()
@@ -35,7 +35,6 @@ const ModalRecorrentes = ({isOpen, setIsOpen, url, forceUpdate, setForceUpdate})
             toast.error("Erro ao registrar recorrente, atualize a sua pagina e tente novamente");
             setIsOpen(false);
         } finally {
-            setForceUpdate(true);
             setIsOpen(false);
             setIsLoading(false);
         }

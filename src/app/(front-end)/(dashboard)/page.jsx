@@ -24,15 +24,13 @@ const page = () => {
     const mesPorExtenso = moment(dataAtual).format('MMMM');
     const user = useUser();
 
-   
-    const [forceUpdate, setForceUpdate] = useState(false);
-    
+
     const userID = user.id
     const mesRef = new Date().toISOString().slice(0, 7)
 
-    const { data: cardData, isLoading: externalIsLoading, error, forceUpdate: externalForceUpdate } = useFinancial(userID, mesRef, forceUpdate);
-    const { data: tableData, isLoading: tableIsLoading, error: tableError, forceUpdate: tableForceUpdate } = useFinancialMonth(userID, mesRef, forceUpdate);
-    const { data: recurringData, isLoading: recurringLoading, error: recurringError, forceUpdate: recurringForceUpdate } = useRecurring(userID, mesRef, forceUpdate, 'recorrente');
+    const { data: cardData, isLoading: externalIsLoading, error, } = useFinancial(userID, mesRef);
+    const { data: tableData, isLoading: tableIsLoading, error: tableError  } = useFinancialMonth(userID, mesRef);
+    const { data: recurringData, isLoading: recurringLoading, error: recurringError} = useRecurring(userID, mesRef, 'recorrente');
 
     const { isLoading, isAuthenticated } = useProtectedRoute();
 
@@ -57,7 +55,7 @@ return (
       </div>
       {/* TODO: GASTOS RECENTES E OVERVIEW DOS MESES https://ui.shadcn.com/examples/dashboard */}
       <div className="flex  dark:bg-[#18181A] justify-center items-center z-40 fixed right-6 bottom-[90px] h-[50px] w-[50px] rounded-lg  border border-gray-400 shadow-lg">
-        <BottomMenu user={user} forceUpdate={forceUpdate} setForceUpdate={setForceUpdate}/>
+        <BottomMenu user={user}/>
       </div>
     </div>
   );

@@ -19,6 +19,9 @@ const useInstallments = () => {
         };
 
         fetchInstallments();
+        const intervalId = setInterval(fetchInstallments, 1000);
+
+        return () => clearInterval(intervalId);
     }, []);
 
     return { installments, loading, error };

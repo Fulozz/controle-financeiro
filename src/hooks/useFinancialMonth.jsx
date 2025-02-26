@@ -33,19 +33,20 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import useLocalStorage from '@/hooks/useLocalStorage'
 
-const useFinancialMonth = (userId, mesRef, forceUpdate = false) => {
+const useFinancialMonth = (userId, mesRef) => {
     const [dataArr, setDataArr] = useState([]); // Armazena os dados em um array
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const token = useLocalStorage()
     const api = process.env.NEXT_PUBLIC_API_URL
+
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`${api}/api/v1/transaction/finances/recent/${userId}/${mesRef}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
-                      }
+                    }
                 });
                 const data = response.data.data;
                 const newDataArray = data.map((item) => ({
@@ -65,13 +66,15 @@ const useFinancialMonth = (userId, mesRef, forceUpdate = false) => {
             }
         };
 
-        if(token && userId && mesRef || forceUpdate) {
+        if (token && userId && mesRef) {
             fetchData();
+            const intervalId = setInterval(fetchData, 1000); // Atualiza os dados a cada 1 segundo
+            return () => clearInterval(intervalId); // Limpa o intervalo quando o componente é desmontado
         }
-    }, [forceUpdate, userId, mesRef]);
+    }, [token, userId, mesRef]);
 
-    return { data: dataArr, loading, error, forceUpdate };
+    return { data: dataArr, loading, error };
 
-  };
+};
 
 export default useFinancialMonth;

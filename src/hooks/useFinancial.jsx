@@ -9,7 +9,7 @@
  * - {Object|null} error - An error object if an error occurred during fetching, or null if no error.
  *
  * @example
- * const { data, loading, error } = useFinancial( 'Im an token','user123', '2023-10', forceUpdate = true);
+ * const { data, loading, error } = useFinancial( 'Im an token','user123', '2023-10');
  *
  * if (loading) {
  *   return <div>Loading...</div>;
@@ -28,19 +28,18 @@
  */
 
 
-
 "use client"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import useLocalStorage from './useLocalStorage';
 
 // Hook para buscar dados financeiros do usuário
-const useFinancial = ( userID, mesRef, forceUpdate = false) => {
+const useFinancial = (userID, mesRef) => {
 
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const token  = useLocalStorage();
+  const token = useLocalStorage();
   const api = process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
@@ -64,12 +63,15 @@ const useFinancial = ( userID, mesRef, forceUpdate = false) => {
       }
     };
 
-    if (token && userID && mesRef || forceUpdate) {
+    if (token && userID && mesRef) {
       fetchData();
-    }
-  }, [token, userID, mesRef, forceUpdate]);
+      const intervalId = setInterval(fetchData, 1000); // Atualiza a cada 1 segundo
 
-  return { data, isLoading, error, forceUpdate};
+      return () => clearInterval(intervalId); // Limpa o intervalo quando o componente é desmontado
+    }
+  }, [token, userID, mesRef]);
+
+  return { data, isLoading, error };
 };
 
 export default useFinancial;

@@ -12,12 +12,12 @@ import useUser from '@/hooks/useUser';
 const page = () => {
   const [ isOpen, setIsOpen ] = useState(false);
   const [search, setSearch] = useState('');
-  const [ forceUpdate, setForceUpdate ] = useState(false);
+
 
   const user = useUser();
   const userID = user.id;
 
-  const { data, isLoading, error} = useRecurring(userID, forceUpdate);
+  const { data, isLoading, error} = useRecurring(userID);
 
   const linkTitle = "Conta parcelada";
   const heading = "Contas Parceladas"
@@ -32,7 +32,7 @@ const page = () => {
         <DataTable setSearch={setSearch} search={search} data={data} />
       </div>    
     </div>
-    { isOpen && (<ModalParcelados isOpen={isOpen} setIsOpen={setIsOpen} forceUpdate={forceUpdate} setForceUpdate={setForceUpdate} url={"/api/v1/transaction/register/installments"}/>)}
+    { isOpen && (<ModalParcelados isOpen={isOpen} setIsOpen={setIsOpen} url={"/api/v1/transaction/register/installments"}/>)}
     </>
   )
 }

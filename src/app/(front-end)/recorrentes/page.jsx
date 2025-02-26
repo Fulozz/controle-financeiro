@@ -10,11 +10,11 @@ import useUser from '@/hooks/useUser';
 const page = () => {
   const [ isOpen, setIsOpen ] = useState(false);
   const [search, setSearch] = useState('');
-  const [ forceUpdate, setForceUpdate ] = useState(false);
+
   const user = useUser();
   const userID = user.id;
 
-  const { data, isLoading, error} = useRecurring(userID, forceUpdate);
+  const { data, isLoading, error} = useRecurring(userID);
   if (isLoading) {
     return <div className="justify-center items-center flex">Carregando...</div>;
   };
@@ -32,7 +32,7 @@ const page = () => {
         <DataTable setSearch={setSearch} search={search} data={data} />
       </div>    
     </div>
-    { isOpen && (<ModalRecorrentes isOpen={isOpen} setIsOpen={setIsOpen} forceUpdate={forceUpdate} setForceUpdate={setForceUpdate} url={"/api/v1/transaction/register/recurring"}/>)}
+    { isOpen && (<ModalRecorrentes isOpen={isOpen} setIsOpen={setIsOpen}  url={"/api/v1/transaction/register/recurring"}/>)}
     </>
   )
 }

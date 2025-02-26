@@ -7,7 +7,7 @@ import useUser from '@/hooks/useUser'
 import { LoaderCircle } from 'lucide-react'
 import useLocalStorage from '@/hooks/useLocalStorage';
 
-const ModalParcelados = ({isOpen, setIsOpen, url}) => {
+const ModalParcelados = ({isOpen, setIsOpen, url    }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [ isLoading, setIsLoading] = useState(false)
     const user = useUser()

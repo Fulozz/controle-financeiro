@@ -43,7 +43,6 @@ const ModalCadastroRecebido = ({ isOpen, setIsOpen }) => {
       setPostLoading(false)
       setIsOpen(false)
     }catch (error){
-      console.log(error)
       toast.error("Erro ao cadastrar recebido")
     }
 

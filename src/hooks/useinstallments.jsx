@@ -19,7 +19,7 @@ const useInstallments = () => {
         };
 
         fetchInstallments();
-        const intervalId = setInterval(fetchInstallments, 1000);
+        const intervalId = setInterval(fetchInstallments, 5000);
 
         return () => clearInterval(intervalId);
     }, []);

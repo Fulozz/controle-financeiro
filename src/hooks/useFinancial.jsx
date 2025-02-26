@@ -65,7 +65,7 @@ const useFinancial = (userID, mesRef) => {
 
     if (token && userID && mesRef) {
       fetchData();
-      const intervalId = setInterval(fetchData, 5000); // Atualiza a cada 5 segundo
+      const intervalId = setInterval(fetchData, 1000); // Atualiza a cada 5 segundo
 
       return () => clearInterval(intervalId); // Limpa o intervalo quando o componente é desmontado
     }

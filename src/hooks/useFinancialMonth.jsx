@@ -68,7 +68,7 @@ const useFinancialMonth = (userId, mesRef) => {
 
         if (token && userId && mesRef) {
             fetchData();
-            const intervalId = setInterval(fetchData, 5000); // Atualiza os dados a cada 5 segundo
+            const intervalId = setInterval(fetchData, 1000); // Atualiza os dados a cada 1 segundo
             return () => clearInterval(intervalId); // Limpa o intervalo quando o componente é desmontado
         }
     }, [token, userId, mesRef]);

@@ -7,9 +7,7 @@ const MovimentacoesRecentes = ({user, data, isLoading, error}) => {
   const mesRef = new Date().toISOString().slice(0, 7)
   const gastos = data
   
-  if (isLoading) {
-    return <div>Carregando...</div>;
-  }
+
   console.log(error)
     const limit = 10;
     // Sort gastos by date in descending order (most recent first)

@@ -15,10 +15,7 @@ const page = () => {
   const userID = user.id;
 
   const { data, isLoading, error} = useRecurring(userID);
-  if (isLoading) {
-    return <div className="justify-center items-center flex">Carregando...</div>;
-  };
- 
+
   const linkTitle = "Conta recorrente";
   const heading = "Contas recorrentes"
   return (

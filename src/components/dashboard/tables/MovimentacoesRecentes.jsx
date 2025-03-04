@@ -1,12 +1,12 @@
 "use client"
 import React from "react";
-import {  X,  Dot } from "lucide-react";
+import {  X,  Dot, MoveRight } from "lucide-react";
+import useFinancialReport from '@/hooks/useFinantialReport';
 
-const MovimentacoesRecentes = ({user, data, isLoading, error}) => {
-  const userID = user.id
-  const mesRef = new Date().toISOString().slice(0, 7)
+const MovimentacoesRecentes = ({user, data}) => {
+
   const gastos = data
-  
+  console.log(data)
     const limit = 10;
     // Sort gastos by date in descending order (most recent first)
     const sortedGastos = gastos.slice(0, limit).sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -14,7 +14,7 @@ const MovimentacoesRecentes = ({user, data, isLoading, error}) => {
   return (
     <div className="overflow-w-auto shadow-lg bg-white dark:bg-black border-white border-2 rounded-lg p-2">
       <table className="min-w-full divide-y divide-gray-700 dark:divide-gray-200">
-        <caption className="">Movimentações recentes</caption>
+        <caption className="px-4"><div className="flex justify-between"><span>Movimentações recentes</span> <a href="" className="flex justify-center items-center"><span className="pr-2">Todas movimentações</span> <MoveRight className="h-4 w-4" /></a></div></caption>
         <thead>
           <tr>
             <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
@@ -35,7 +35,7 @@ const MovimentacoesRecentes = ({user, data, isLoading, error}) => {
           
           {sortedGastos.map((gasto) => (
             <tr key={gasto.id}>
-              <td>{gasto.data}</td>
+              <td>{gasto.title}</td>
               {gasto.status === "pago" ? (
                 <td className="flex  items-center">
                   <Dot size={32} strokeWidth={3} className=" mr-2 text-green-500 " />

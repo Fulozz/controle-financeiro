@@ -5,7 +5,7 @@ const DashboardTables = ({ user, tableData, isLoading, error}) => {
   return (
     <div className='flex flex-1 flex-col gap-4 p-4 pt-0'>
         <div className="grid auto-rows-min gap-4 md:grid-cols-2">
-          <MovimentacoesRecentes user={user} data={tableData} isLoading={isLoading} error={error}/>
+            <MovimentacoesRecentes user={user} data={tableData} isLoading={isLoading} error={error}/>
             <AgendadoTable />
         </div>
     </div>

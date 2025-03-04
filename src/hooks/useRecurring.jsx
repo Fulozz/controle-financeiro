@@ -27,7 +27,7 @@ const useRecurring = (userID) => {
 
         if (token && userID) {
             fetchData();
-            const interval = setInterval(fetchData, 1000);
+            const interval = setInterval(fetchData, 5000);
             return () => clearInterval(interval);
         }
     }, [userID, token]);

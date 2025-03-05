@@ -1,36 +1,29 @@
 "use client"
 import React, { useState } from 'react'
 import { Wallet, ChevronsUpDown, ChevronUp, SquareTerminal, Settings, DollarSign } from 'lucide-react'
-import { isUserLoggedIn } from '@/hooks/useAuth';
-
 
 const Sidebar = () => {
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
     const [isFinanceiroOpen, setIsFinanceiroOpen] = useState(false);
     const [isConfigurationOpen, setIsConfigurationOpen] = useState(false);
-    const  isAuthenticated  = isUserLoggedIn()
-
 
   return (
     <>  
-
-        {
-            isAuthenticated && (
-                <div className={`hidden md:block`} >
-                    <nav className={`fixed inset-y-0 left-0  bg-[#FAFAFA] dark:bg-[#18181D] border-r-[1px] w-64 }`}>
-                    <div className="flex text-white items-center justify-start p-4 hover:bg-[#F4F4F5] dark:hover:bg-[#27272A] rounded-lg gap-2 ">
-                        <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-400">
-                            <Wallet className="h-[24px] w-[24px]" />
-                        </div>
-                        <div className={`grid flex-1 text-left text-sm leading-tight`}>
-                            <span className='font-semibold text-black dark:text-white'>Fulo Inc</span>
-                            <span className='text-xs text-black dark:text-white'>Entrerprise</span>
-                        </div>
-                        <ChevronsUpDown className={`h-[16px] w-[16px] text-black dark:text-white`} />
+        <div className={`hidden md:block`} >
+            <nav className={`fixed inset-y-0 left-0  bg-[#FAFAFA] dark:bg-[#18181D] border-r-[1px] w-64 }`}>
+                <div className="flex text-white items-center justify-start p-4 hover:bg-[#F4F4F5] dark:hover:bg-[#27272A] rounded-lg gap-2 ">
+                    <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-400">
+                        <Wallet className="h-[24px] w-[24px]" />
                     </div>
-                    <div className="group relative inline-block">
-                        
+                    <div className={`grid flex-1 text-left text-sm leading-tight`}>
+                        <span className='font-semibold text-black dark:text-white'>Fulo Inc</span>
+                        <span className='text-xs text-black dark:text-white'>Entrerprise</span>
                     </div>
+                    <ChevronsUpDown className={`h-[16px] w-[16px] text-black dark:text-white`} />
+                </div>
+                <div className="group relative inline-block">
+                    
+                </div>
                 <div className="relative flex w-full min-w-0 flex-col p-2">
                     <div className="duration-200 flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-none ease-linear text-[#F4F4F5B2] text-black dark:text-white">Principal</div>
                     <ul className="flex w-full min-w-0 flex-col gap-1">
@@ -78,11 +71,9 @@ const Sidebar = () => {
                             </li>
                         </div>
                     </ul>
-                    </div>
-                </nav>  
                 </div>
-            )
-        }
+            </nav>  
+        </div>
     </>
   )
 }

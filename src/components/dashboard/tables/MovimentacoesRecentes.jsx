@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
 import {  X,  Dot, MoveRight } from "lucide-react";
-import useFinancialReport from '@/hooks/useFinantialReport';
+
 
 const MovimentacoesRecentes = ({user, data}) => {
 
@@ -14,7 +14,7 @@ const MovimentacoesRecentes = ({user, data}) => {
   return (
     <div className="overflow-w-auto shadow-lg bg-white dark:bg-black border-white border-2 rounded-lg p-2">
       <table className="min-w-full divide-y divide-gray-700 dark:divide-gray-200">
-        <caption className="px-4"><div className="flex justify-between"><span>Movimentações recentes</span> <a href="" className="flex justify-center items-center"><span className="pr-2">Todas movimentações</span> <MoveRight className="h-4 w-4" /></a></div></caption>
+        <caption className="px-4"><div className="flex justify-between"><span>Movimentações recentes</span> <a href="/transacoes" className="flex justify-center items-center"><span className="pr-2">Todas movimentações</span> <MoveRight className="h-4 w-4" /></a></div></caption>
         <thead>
           <tr>
             <th className="px-6 py-3 text-left text-xs font-medium text-black dark:text-white uppercase tracking-wider">
